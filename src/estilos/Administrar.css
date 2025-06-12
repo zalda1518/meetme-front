@@ -1,0 +1,47 @@
+.div-padre-administrar {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.titulo-principal-administrar {
+    width: 100%;
+    background-color: rgb(55, 63, 65);
+    color: white;
+    padding-left: 1%;
+
+}
+
+.div-tabla-administrar {
+    width: 90%;
+    min-height: 1024px;
+    background-color: rgba(236, 239, 240, 0.541);
+
+}
+
+.tabla-administrar {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 8px rgb(0, 0, 0, 0.1);
+}
+
+.thead-administrar {
+    background-color: #93a793;
+    color: white;
+}
+
+.th-administrar,
+.tr-administrar,
+.td-administrar {
+    padding: 5px 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla tr:hover{
+    background-color: #b6b3b3;
+}
+
+
+/*-----------------menu responsive ------------------*/

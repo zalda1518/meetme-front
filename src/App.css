@@ -1,0 +1,5 @@
+.App{
+    margin: auto;
+    display: flex;
+    transition: all 0.6s;
+}

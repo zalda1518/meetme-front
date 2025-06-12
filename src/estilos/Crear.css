@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+    transition: all 0.5s;
+  }
+ 
+  .form-padre-crear{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 1024px;
+    box-sizing: border-box;
+    background-color:rgba(236, 239, 240, 0.541);
+
+  }
+  .titulo-principal-crear{
+    width: 100%;
+    height: 35px;
+    background-color:rgb(55, 63, 65);
+    color: white;
+    padding-left: 2%;
+  }
+ 
+  .form-datos-dueño{
+    display: block;
+    width: 40%;
+    margin-left: 0;
+    height: 400px;
+    padding: 1%;
+    margin-top: 1%;
+   }
+  .form-datos-mascota{
+    display: block;
+    width: 40%;
+    height: 400px;
+    padding: 1%;
+    margin-top: 1%;
+}
+  .datos-dueño{
+    margin: auto;
+    margin-top: 5%;
+    margin-left: 2%;
+    padding: 15px;
+    width: 40%;
+    border: none;
+    background-color:rgba(193, 204, 207, 0.541);
+
+  }
+ 
+  .datos-mascota{
+    margin: auto;
+    margin-top: 5%;
+    margin-left: 2%;
+    padding: 15px;
+    width: 40%;
+    border: none;
+    background-color:rgba(193, 204, 207, 0.541);
+
+  }
+  .div-foto-mascota{
+    margin-top: 12%;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+  }
+  .input-foto-mascota{
+    margin-top: 5%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    padding: 3px;
+    border-radius: 50px;
+  }
+ .titulo-foto-mascota{
+  margin-top: 2%;
+  margin-left: 2%;
+ }
+  .boton-crear{
+    padding: 5px;
+    border: solid 1px white;
+    height: 30px;
+    background-color: rgb(135, 255, 135);
+    width: 50%;
+    margin: auto;
+    margin-top: 1%;
+    margin-top: 1%;
+  }
+  .icono-menu{
+    display: none;
+ }  
+
+  .menu-hamburgesa-oculto{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(17, 17, 16);
+    position: absolute;
+ }
+/*---------------------------------------------------*/
+/*menu responsive*/
+
+@media screen and (max-width:768px){
+
+  .form-padre-crear{
+    width: 100%;
+  }
+  .titulo-principal-crear{
+    width: 100%;
+    height: 90px;
+  }
+
+  .form-datos-dueño{
+    width: 100%;
+  }
+  .form-datos-mascota{
+    width: 100%;
+  }
+ 
+  .icono-menu{
+    display: flex;
+    height: 50px;
+ }  
+ .titulo-datos-dueño-crear{
+  padding-left: 1%;
+ }
+ .titulo-datos-mascota-crear{
+  padding-left: 1%;
+ }
+
+
+ .icono-menu:hover{
+  background-color: rgb(107, 113, 119);
+  border-radius: 5px;
+}
+
+.menu-hamburgesa-activo{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(17, 17, 16);
+  position: fixed;
+}
+
+}

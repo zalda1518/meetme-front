@@ -1,0 +1,191 @@
+.login-padre{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+}
+.div-padre-login{
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+     width: 50%;
+     background-color:rgba(242, 245, 247, 0.541);
+    padding-top: 8%;
+    padding-bottom: 50%;
+}
+.titulo-iniciar-sesion-login{
+  width: 20%;
+  margin-left: 40%;
+    
+}
+.login-input{
+    width: 50%;
+    padding: 1%;
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: none;
+    border:  solid 1px rgb(148, 148, 252);
+    border-radius: 10px;
+}
+.btn-ingresar-login{
+    width: 50%;
+    margin: auto;
+    padding: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: rgb(160, 252, 148);
+    color: rgb(128, 124, 124);
+    border:rgb(216, 210, 210);
+    cursor: pointer;
+}
+.btn-registrarse-login{
+    width: 50%;
+    margin: auto;
+    padding: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: rgb(148, 148, 252);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.recuperar-contraseña-login{
+    width: 25%;
+    margin: auto;
+    margin-left: 40%;
+    
+}
+/*--------------------------------------------------*/
+.div-imagen-login{
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    background-color: rgb(246, 251, 255);
+    padding: 1%;
+}
+.img-logo-login{
+    display: flex;
+    width: 50%;
+    height: 200px;
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 1%;
+}
+.titulo-meetme-login{
+    width: 65%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    margin-left: 20%;
+}
+.div-buscar-id{
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    margin-top: 2%;
+    margin-left: 5%;
+    min-height: 10vh;
+}
+.input-buscar-id{
+    width: 50%;
+    padding: 1%;
+    margin: auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border: none;
+    border:  solid 1px rgb(148, 148, 252);
+    border-radius: 10px;
+}
+.btn-buscar-id{
+    width: 50%;
+    padding: 2%;
+    margin: auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: rgb(160, 252, 148);
+    color: rgb(110, 106, 106);
+    border: none;
+    cursor: pointer;
+}
+
+/* responsive desing*/
+
+@media screen and (max-width:768px){
+
+   
+
+    .div-padre-login{
+        width: 100%;
+        height: 45vh;
+        background-color:rgba(217, 221, 223, 0.541);
+        padding-top: 8%;
+        padding-bottom: 1%;
+    }
+   
+    .login-input{
+        width: 80%;
+        padding: 3%;
+        margin-top: 5%;
+        
+    }
+
+    .btn-registrarse-login{
+        width: 70%;
+        padding: 4%;
+        margin-top: 5%;
+        margin-bottom: 2%;
+      }
+
+      .btn-ingresar-login{
+        width: 70%;
+        padding: 4%;
+        margin-top: 5%;
+        margin-bottom: 2%;
+      }
+
+      .recuperar-contraseña-login{
+        margin-top: 5%;
+    }
+     .div-imagen-login{
+        width: 100%;
+        height: 50vh;
+        background-color:rgba(217, 221, 223, 0.541);
+        padding-bottom: 10%;
+     }
+
+     .img-logo-login{
+        display: flex;
+        width: 50%;
+        height: 80px;
+        margin: auto;
+        margin-top: 10%;
+        margin-bottom: 1%;
+    }
+    .titulo-meetme-login{
+        width: 65%;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        margin-left: 20%;
+    }
+
+    .btn-buscar-id{
+        width: 80%;
+        padding: 3%;
+        margin: auto;
+        margin-top: 5%;
+        margin-bottom: 1%;
+        background-color: rgb(160, 252, 148);
+        color: rgb(110, 106, 106);
+        border: none;
+        cursor: pointer;
+    }
+     .input-buscar-id{
+        width: 70%;
+        padding: 3%;
+     }
+
+
+}
+
+
