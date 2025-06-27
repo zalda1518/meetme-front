@@ -1,62 +1,77 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import '../estilos/Registros.css';
-import HeaderUsuario from "./HeaderUsuario";
-import HeaderAdmin from "./HeaderAdmin";
-// import Map from "./Map";
-import menu from '../includes/menu.png';
-import MenuResponsiveUsuario from "./MenuResponsiveUsuario";
-import MenuResponsiveAdmin from "./MenuResponsiveAdmin";
+import { useNavigate } from "react-router-dom";
+import '../../estilos/Registros.css';
+import HeaderAdmin from "../HeaderAdmin";
+import menu from '../../includes/menu.png';
+import MenuResponsiveAdmin from "../MenuResponsiveAdmin";
+//------------------------------------------------------------------//
 
-function Registros() {
-   const { id } = useParams();
+function RegistrosAdmin() {
    const [datos, setDatos] = useState([]);
-   const [rol, setRol] = useState('');
    const [estilo, setEstilo] = useState(false); //para que no se muestre la hamburguesa en version escritorio//
    const navigate = useNavigate();
 
+   const token = localStorage.getItem('token');
+   const id_usuario = localStorage.getItem('id_usuario');
+
+   //para validar el rol del usuario//
+
+   async function getRol() {
+
+      const res = await fetch('http://localhost:4000/getrol',
+         {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
+         }
+      );
+      if (!res.ok) {
+         alert('endpoint getrol, no responde');
+      } else {
+         const response = await res.json();
+         const rol = response.resultados.rol;
+
+
+         if (rol !== 'administrador') {
+            alert('no eres admin');
+            navigate('/registros');
+            return;
+
+         }
+      }
+   }
+   getRol();
 
    //para validar la sesion y buscar datos del usuario en sesion //
    useEffect(() => {
       async function fetchData() {
 
-         if (!localStorage.getItem('sesion')) {
+         if (!token) {
             navigate('/');
             return;
 
          } else {
-           
-            const res = await fetch(`http://localhost:4000/buscar/${id}`)   //https://meetme-production.up.railway.app/buscar/${id};
+
+            const res = await fetch('http://localhost:4000/registros',
+               {
+                  method: 'GET',
+                  headers: { 'Content-Type': 'application/json', 'auth': token }
+               });
 
             if (!res.ok) {
-               alert('no hay datos del usuario en la base de datos');
+               alert('algo salio mal en el backend');
                return;
             }
             const response = await res.json();
-            setDatos(response.registro);
-            validarRol();
+            console.log(response.resultados);
+            setDatos(response.resultados);
          }
       }
       fetchData();
-   }, [id]);
 
-   // para validar el rol del usuario //
-   async function validarRol() {
-      const res = await fetch('http://localhost:4000/getrol',               //https://meetme-production.up.railway.app/getrol
-         {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "id_usuario": id })
-         });
+   }, []);
 
-      if (!res.ok) {
-         return false;
-      } else {
-         const response = await res.json();
-         setRol(response.resultados.rol);
 
-      }
-   }
+
 
    //fucion para mostrar el menu responsive//
    function menuResponsive() {
@@ -67,6 +82,7 @@ function Registros() {
 
    //-------------------------------------------------------------------------------------
    return (
+
       <>
          {datos.length >= 1 ?
             <div className='div-padre-registros'>
@@ -74,12 +90,11 @@ function Registros() {
                   <h2 className="h2-icono-registros"><img src={menu} className="icono-menu" />MEETME</h2>
                </div>
 
-               {/*aca inicia la validacion de roles*/}
-               {rol === 'administrador' ? <HeaderAdmin id={id} /> : <HeaderUsuario id={id} />}                        {/*el menu solo para version de escritorio*/}
+               <HeaderAdmin /> {/*el menu solo para version de escritorio*/}
                <div className={estilo ? 'menu-hamburgesa-activo' : 'menu-hamburgesa-oculto'} onClick={menuResponsive}>
-                  {rol === 'administrador' ? <MenuResponsiveAdmin id={id} /> : <MenuResponsiveUsuario id={id} />}     {/*el menu solo para version de movil*/}
+                  {<MenuResponsiveAdmin />}     {/*el menu solo para version de movil*/}
                </div>
-               {/*aca termina validacionde roles y adicional se pintan los componentes para el menu responsive*/}
+               {/*--------------------------------------------------------------------------------*/}
 
                <div className="item2-registros">
                   <div className="div-imagen-registros">
@@ -101,16 +116,16 @@ function Registros() {
                      <span className="titulos-dueño-registros" id="titulos"><h5>Direccion</h5>{datos[0].direccion}</span>
                      <span className="titulos-dueño-registros" id="titulos"><h5>Telefono</h5>{datos[0].telefono}</span>
                   </div>
-
-                  {/* <div className="item5-registros">
-                     <Map datos={datos} />
-                  </div> */}
                </div>
 
-            </div> : navigate(`/crear/${id}`)}
+            </div> : <div>
+               <span>aun no tienes mascotas registradas </span>
+               <a href="/crear"> registrar mascota</a>
+            </div>}
 
       </>
+
    );
 }
 
-export default Registros;
+export default RegistrosAdmin;

@@ -1,18 +1,18 @@
 import './App.css';
 import { useState } from 'react';
 import {BrowserRouter, Route,Routes } from 'react-router-dom';
-import Crear  from './componentes/Crear';
-import  HeaderUsuario  from './componentes/HeaderUsuario';
-import  HeaderAdmin  from './componentes/HeaderAdmin';
-import Registros from './componentes/Registros';
-import Login from './componentes/Login';
-import CrearUsuario from './componentes/CrearUsuario';
-import Perfil from './componentes/Perfil';
-import CodigoQr from './componentes/CodigoQr';
-import Administrar from './componentes/Administrar';
-import PublicIDMimascota from './componentes/PublicIDMimascota';
-import EditarUsuarios from './componentes/EditarUsuarios';
-import Usuarios from './componentes/Usuarios';
+import Crear  from './vistas/Crear';
+import Registros from './vistas/Registros';
+import RegistrosAdmin from './vistas/vistasAdmin/RegistrosAdmin';
+import Login from './vistas/Login';
+import CrearUsuario from './vistas/CrearUsuario';
+import Perfil from './vistas/Perfil';
+import PerfilAdmin from './vistas/vistasAdmin/PerfilAdmin';
+import CodigoQr from './vistas/CodigoQr';
+import Administrar from './vistas/Administrar';
+import PublicIDMimascota from './vistas/PublicIDMimascota';
+import EditarUsuarios from './vistas/EditarUsuarios';
+import Usuarios from './vistas/Usuarios';
 
 
 function App() {
@@ -30,9 +30,11 @@ function App() {
         <Route path='/' element={<Login />}/>
         <Route path='/login' element={<Login  />}/>
         <Route path='/publicIDMimascota/:id' element={<PublicIDMimascota  />}/>
-        <Route path='/crear/:id' element={<Crear  />}/>
-        <Route path='/registros/:id' element={<Registros  />}/>
-        <Route path='/perfil/:id' element={<Perfil />}/>
+        <Route path='/crear' element={<Crear  />}/>
+        <Route path='/registros' element={<Registros  />}/>
+        <Route path='/registrosAdmin' element={<RegistrosAdmin  />}/>
+        <Route path='/perfil' element={<Perfil />}/>
+        <Route path='/perfilAdmin' element={<PerfilAdmin />}/>
         <Route path='/usuarios/:id' element={<Usuarios />}/>
         <Route path='/administrar/:id' element={<Administrar />}/>
         <Route path='/crearusuarios/:id' element={<CrearUsuario />}/>

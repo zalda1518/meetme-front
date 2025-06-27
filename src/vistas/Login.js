@@ -39,13 +39,12 @@ function Login() {               //inicia el componente//
          return;
       } else {
          const response = await res.json();
-         console.log(response);
+        //  console.log(response);
           Bienvenido();
         
-         localStorage.setItem('sesion', response.resultados.id_usuario);
-         localStorage.setItem('login', 'true');
-        // localStorage.setItem('token', response.token);
-         navigate(`/registros/${response.resultados.id_usuario}`);
+         localStorage.setItem('token', response.token);
+         localStorage.setItem('id_usuario', response.id_usuario);
+         navigate('/registros');
       }
 
    }
