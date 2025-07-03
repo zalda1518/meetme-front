@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import HeaderAdmin from './HeaderAdmin';
-import HeaderUsuario from './HeaderUsuario';
-import MenuResponsiveAdmin from './MenuResponsiveAdmin';
-import MenuResponsiveUsuario from './MenuResponsiveUsuario';
-import '../estilos/Usuarios.css';
-import menu from '../includes/menu.png';
+import HeaderAdmin from '../HeaderAdmin';
+import HeaderUsuario from '../HeaderUsuario';
+import MenuResponsiveAdmin from '../MenuResponsiveAdmin';
+import MenuResponsiveUsuario from '../MenuResponsiveUsuario';
+import '../../estilos/Usuarios.css';
+import menu from '../../includes/menu.png';
 
 
 

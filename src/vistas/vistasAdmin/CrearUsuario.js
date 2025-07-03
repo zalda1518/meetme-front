@@ -1,11 +1,11 @@
-import '../estilos/CrearUsuario.css';
+import '../../estilos/CrearUsuario.css';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { Warning, Error, Success } from '../includes/Alertas';
-import HeaderAdmin from './HeaderAdmin';
-import HeaderUsuario from './HeaderUsuario';
-import MenuResponsiveAdmin from './MenuResponsiveAdmin';
-import MenuResponsiveUsuario from './MenuResponsiveUsuario';
-import menu from '../includes/menu.png';
+import { Warning, Error, Success } from '../../includes/Alertas';
+import HeaderAdmin from '../HeaderAdmin';
+import HeaderUsuario from '../HeaderUsuario';
+import MenuResponsiveAdmin from '../MenuResponsiveAdmin';
+import MenuResponsiveUsuario from '../MenuResponsiveUsuario';
+import menu from '../../includes/menu.png';
 import { useEffect, useState } from 'react';
 
 function CrearUsuario() {

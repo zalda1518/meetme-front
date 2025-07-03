@@ -5,8 +5,8 @@ function HeaderAdmin() {
 
 
   function CerrarSesion() {
-    localStorage.removeItem('sesion');
-    localStorage.removeItem('login');
+    localStorage.removeItem('token');
+    localStorage.removeItem('id_usuario');
   }
 
   return (

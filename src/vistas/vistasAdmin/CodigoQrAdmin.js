@@ -1,22 +1,20 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { QRCodeCanvas } from 'qrcode.react';
-import '../estilos/CodigoQr.css';
-import menu from '../includes/menu.png';
-import HeaderAdmin from './HeaderAdmin.js';
-import HeaderUsuario from './HeaderUsuario.js';
-import MenuResponsiveAdmin from './MenuResponsiveAdmin.js';
-import MenuResponsiveUsuario from './MenuResponsiveUsuario.js';
-import { AlertaQR, QRGenerado } from '../includes/Alertas.js';
+import '../../estilos/CodigoQr.css';
+import menu from '../../includes/menu.png';
+import HeaderAdmin from '../HeaderAdmin.js';
+import MenuResponsiveAdmin from '../MenuResponsiveAdmin.js';
+import { AlertaQR, QRGenerado } from '../../includes/Alertas.js';
 
-function CodigoQr() {
+function CodigoQrAdmin() {
   const navigate = new useNavigate();
-  const { id } = useParams();
   const [datos, setDatos] = useState([]);
   const [qrGenerado, setQrGenerado] = useState('');
   const [estilo, setEstilo] = useState(false); //para que no se muestre la hamburguesa en version escritorio//
-  const [urlQR, setUrlQr] = useState('');
   //-------------------------------------------------------------------------------------------//
+
+  
   const token = localStorage.getItem('token');
   const id_usuario = localStorage.getItem('id_usuario');
 
@@ -30,13 +28,13 @@ function CodigoQr() {
       });
 
     if (!res.ok) {
-         alert('debes iniciar sesion primero');
+      alert('debes iniciar sesion primero y debes ser administrador');
          return;
     } else {
       const response = await res.json();
       const rol = response.resultados.rol;
-      if (rol === 'administrador') {
-        navigate('/codigoqradmin');
+      if (rol !== 'administrador') {
+         navigate('/codigo');
         return;
       }
     }
@@ -106,9 +104,9 @@ function CodigoQr() {
         </div>
 
 
-        <HeaderUsuario />                              {/*el menu solo para version de escritorio*/}
+        <HeaderAdmin />                              {/*el menu solo para version de escritorio*/}
         <div className={estilo ? 'menu-hamburgesa-activo' : 'menu-hamburgesa-oculto'} onClick={menuResponsive}>
-          <MenuResponsiveUsuario />           {/*el menu solo para version de movil*/}
+          <MenuResponsiveAdmin />           {/*el menu solo para version de movil*/}
         </div>
 
 
@@ -124,4 +122,4 @@ function CodigoQr() {
   );
 }
 
-export default CodigoQr;
+export default CodigoQrAdmin;

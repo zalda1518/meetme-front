@@ -14,8 +14,8 @@ function Registros() {
 
    const token = localStorage.getItem('token');
    const id_usuario = localStorage.getItem('id_usuario');
-
-   //para validar el rol del usuario//
+   
+//para validar el rol del usuario//
 
    async function getRol() {
 
@@ -26,21 +26,22 @@ function Registros() {
          }
       );
       if (!res.ok) {
-         alert('endpoint getrol, no responde');
+         alert('debes iniciar sesion primero');
+         return;
       } else {
          const response = await res.json();
          const rol = response.resultados.rol;
 
+
          if (rol === 'administrador') {
-            navigate('registrosAdmin');
+            navigate('/registrosadmin');
             return;
+
          }
-
-         console.log(rol);
       }
-
    }
    getRol();
+
 
    //para validar la sesion y buscar datos del usuario en sesion //
    useEffect(() => {

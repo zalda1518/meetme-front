@@ -14,6 +14,7 @@ function RegistrosAdmin() {
    const token = localStorage.getItem('token');
    const id_usuario = localStorage.getItem('id_usuario');
 
+
    //para validar el rol del usuario//
 
    async function getRol() {
@@ -25,7 +26,8 @@ function RegistrosAdmin() {
          }
       );
       if (!res.ok) {
-         alert('endpoint getrol, no responde');
+         alert('debes iniciar sesion primero y ser administrador');
+         return;
       } else {
          const response = await res.json();
          const rol = response.resultados.rol;

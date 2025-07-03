@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import '../estilos/Administrar.css';
-import HeaderUsuario from "./HeaderUsuario";
-import HeaderAdmin from "./HeaderAdmin";
-import Map from "./Map";
-import menu from '../includes/menu.png';
-import MenuResponsiveUsuario from "./MenuResponsiveUsuario";
-import MenuResponsiveAdmin from "./MenuResponsiveAdmin";
+import '../../estilos/Administrar.css';
+import HeaderUsuario from "../HeaderUsuario";
+import HeaderAdmin from "../HeaderAdmin";
+import Map from "../Map";
+import menu from '../../includes/menu.png';
+import MenuResponsiveUsuario from "../MenuResponsiveUsuario";
+import MenuResponsiveAdmin from "../MenuResponsiveAdmin";
 
 function Administrar() {
    const { id } = useParams();

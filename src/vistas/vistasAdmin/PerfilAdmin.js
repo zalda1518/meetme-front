@@ -33,7 +33,8 @@ function PerfilAdmin() {
          }
       );
       if (!res.ok) {
-         alert('endpoint getrol, no responde');
+         alert('debes iniciar sesion primero y debes ser administrador');
+         return;
       } else {
          const response = await res.json();
          const rol = response.resultados.rol;
@@ -72,7 +73,7 @@ function PerfilAdmin() {
             }
             const response = await res.json();
             console.log(response.resultados);
-            setDatos(response.resultados);
+            setDatos(response.resultados[0]);
 
          }
          catch (error) {
@@ -89,7 +90,7 @@ function PerfilAdmin() {
    async function ActualizarImagen(e) {
       const filee = e.target.files;
       const DATA = new FormData();
-      DATA.append('file', filee[0]);
+      DATA.append('file', filee);
       DATA.append('upload_preset', 'meetme');
       setImagen(DATA);
       setLoading(true);
@@ -155,7 +156,7 @@ function PerfilAdmin() {
       <>
          {loading ? Cargando() : false}
 
-         {datos.length >= 1 ?
+         {datos.nombres ?
             <div className='div-padre'>
                <div className='item1-titulo-principal' onClick={menuResponsive}>
                   <h2><img src={menu} className="icono-menu" />MEETME</h2>
@@ -172,32 +173,32 @@ function PerfilAdmin() {
 
                <div className="item3">
                   <h3 className="titulo-datos-dueño-perfil">TUS DATOS REGISTRADOS</h3>
-                  <span className="titulos-div1"><h5>Nombres</h5>{datos[0].nombres}</span>
-                  <span className="titulos-div1"><h5>Apellidos</h5>{datos[0].apellidos}</span>
-                  <span className="titulos-div1"><h5>Ciudad</h5> {datos[0].ciudad}</span>
-                  <span className="titulos-div1"><h5>Direccion</h5>{datos[0].direccion}</span>
-                  <span className="titulos-div1"><h5>Telefono</h5>{datos[0].telefono}</span>
-                  <span className="titulos-div1"><h5>Nombre de la mascota</h5>{datos[0].nombre_mascota}</span>
-                  <span className="titulos-div1"><h5>Genero</h5>{datos[0].genero}</span>
-                  <span className="titulos-div1"><h5>Tipo de Animal</h5> {datos[0].tipo_animal}</span>
-                  <span className="titulos-div1"><h5>Raza</h5> {datos[0].raza}</span>
-                  <span className="titulos-div1"><h5>Edad</h5> {datos[0].edad}</span>
+                  <span className="titulos-div1"><h5>Nombres</h5>{datos.nombres}</span>
+                  <span className="titulos-div1"><h5>Apellidos</h5>{datos.apellidos}</span>
+                  <span className="titulos-div1"><h5>Ciudad</h5> {datos.ciudad}</span>
+                  <span className="titulos-div1"><h5>Direccion</h5>{datos.direccion}</span>
+                  <span className="titulos-div1"><h5>Telefono</h5>{datos.telefono}</span>
+                  <span className="titulos-div1"><h5>Nombre de la mascota</h5>{datos.nombre_mascota}</span>
+                  <span className="titulos-div1"><h5>Genero</h5>{datos.genero}</span>
+                  <span className="titulos-div1"><h5>Tipo de Animal</h5> {datos.tipo_animal}</span>
+                  <span className="titulos-div1"><h5>Raza</h5> {datos.raza}</span>
+                  <span className="titulos-div1"><h5>Edad</h5> {datos.edad}</span>
                </div>
 
                <form className="item4">
                   <h3 id="titulo-datos-dueño-perfil">ACTUALIZA LOS DATOS DE TU PERFIL</h3>
-                  <div className="div-imagen"><img src={datos[0].foto_mascota} className="titulos-div2" id="img-mascota" /></div>
+                  <div className="div-imagen"><img src={datos.foto_mascota} className="titulos-div2" id="img-mascota" /></div>
                   <div className="div-inputs">
-                     <input className="titulos-div2" name="nombres" value={datos[0].nombres} onChange={handleChange} placeholder="Nombres" />
-                     <input className="titulos-div2" name="apellidos" value={datos[0].apellidos} onChange={handleChange} placeholder="Apellidos" />
-                     <input className="titulos-div2" name="ciudad" value={datos[0].ciudad} onChange={handleChange} placeholder="Ciudad" />
-                     <input className="titulos-div2" name="direccion" value={datos[0].direccion} onChange={handleChange} placeholder="Direccion" />
-                     <input type="number" className="titulos-div2" name="telefono" value={datos[0].telefono} onChange={handleChange} placeholder="Telefono" />
-                     <input className="titulos-div2" name="nombre_mascota" value={datos[0].nombre_mascota} onChange={handleChange} placeholder="Nombre de la mascota" />
-                     <input className="titulos-div2" name="genero" value={datos[0].genero} onChange={handleChange} placeholder="Genero" />
-                     <input className="titulos-div2" name="tipo_animal" value={datos[0].tipo_animal} onChange={handleChange} placeholder="Tipo animal" />
-                     <input className="titulos-div2" name="raza" value={datos[0].raza} onChange={handleChange} placeholder="Raza" />
-                     <input type="number" className="titulos-div2" name="edad" value={datos[0].edad} onChange={handleChange} placeholder="Edad" />
+                     <input className="titulos-div2" name="nombres" value={datos.nombres} onChange={handleChange} placeholder="Nombres" />
+                     <input className="titulos-div2" name="apellidos" value={datos.apellidos} onChange={handleChange} placeholder="Apellidos" />
+                     <input className="titulos-div2" name="ciudad" value={datos.ciudad} onChange={handleChange} placeholder="Ciudad" />
+                     <input className="titulos-div2" name="direccion" value={datos.direccion} onChange={handleChange} placeholder="Direccion" />
+                     <input type="number" className="titulos-div2" name="telefono" value={datos.telefono} onChange={handleChange} placeholder="Telefono" />
+                     <input className="titulos-div2" name="nombre_mascota" value={datos.nombre_mascota} onChange={handleChange} placeholder="Nombre de la mascota" />
+                     <input className="titulos-div2" name="genero" value={datos.genero} onChange={handleChange} placeholder="Genero" />
+                     <input className="titulos-div2" name="tipo_animal" value={datos.tipo_animal} onChange={handleChange} placeholder="Tipo animal" />
+                     <input className="titulos-div2" name="raza" value={datos.raza} onChange={handleChange} placeholder="Raza" />
+                     <input type="number" className="titulos-div2" name="edad" value={datos.edad} onChange={handleChange} placeholder="Edad" />
                      <input type="file" accept="image/*" className="titulos-div2" id="input-imagen" onChange={ActualizarImagen} />
                      <button type="button" onClick={Update} className="btn-actualizar">Actualizar</button>
                   </div>

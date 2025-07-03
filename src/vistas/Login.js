@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import  BuscarID  from './BuscarID.js';
 import { Warning, ErrorUsuario, Bienvenido } from '../includes/Alertas.js';
+import ValidarRol from '../controlador/Controlador.js';
 
 
 function Login() {               //inicia el componente//
@@ -35,16 +36,17 @@ function Login() {               //inicia el componente//
          });
 
       if (!res.ok) {
-         ErrorUsuario();
-         return;
+          ErrorUsuario();
+          return;
+   
       } else {
          const response = await res.json();
-        //  console.log(response);
-          Bienvenido();
         
          localStorage.setItem('token', response.token);
          localStorage.setItem('id_usuario', response.id_usuario);
-         navigate('/registros');
+         Bienvenido();
+         
+         ValidarRol(navigate); //controlador validar rol
       }
 
    }
