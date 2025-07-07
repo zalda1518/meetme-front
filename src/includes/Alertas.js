@@ -122,6 +122,14 @@ export function Cargando() {
    });
 }
 
+export function CargandoInfo() {
+   Swal.fire({
+      title: 'Cargando informacion',
+      text: 'espere unos segundos mientras se carga la pagina',
+      icon: 'warning'
+   });
+}
+
 export function ErrorCargaImagen() {
    Swal.fire({
       title: "Error no se pudo cargar la imagen",

@@ -1,16 +1,14 @@
-import { use, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import '../estilos/Perfil.css';
-import menu from '../includes/menu.png';
-import HeaderUsuario from "./HeaderUsuario.js";
+import {  useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import '../../estilos/Perfil.css';
+import menu from '../../includes/menu.png';
 import HeaderAdmin from "./HeaderAdmin.js";
 import MenuResponsiveAdmin from './MenuResponsiveAdmin.js'
-import MenuResponsiveUsuario from './MenuResponsiveUsuario.js'
-import { Warning, Error, Success, Cargando, Cargada, ErrorCargaImagen, SuccessUpdate } from '../includes/Alertas.js';
+import { Warning, Error, Success, Cargando, Cargada, ErrorCargaImagen, SuccessUpdate } from '../../includes/Alertas.js';
 
-function Perfil() {
+function PerfilAdmin() {
 
-   const { id } = useParams();
+
    const navigate = useNavigate();
    const [estilo, setEstilo] = useState(false); //para que no se muestre la hamburguesa en version escritorio//
    const [datos, setDatos] = useState([]);
@@ -19,60 +17,80 @@ function Perfil() {
    const [loading, setLoading] = useState(false);
    const [rol, setRol] = useState('');
 
-   // para validar si existe user en sesion //
-   useEffect(() => {
-      if (!localStorage.getItem('sesion')) {
-         return navigate('/');
+
+   const token = localStorage.getItem('token');
+   const id_usuario = localStorage.getItem('id_usuario');
+
+    // para validar el rol del usuario //
+   async function getRol() {
+
+      const res = await fetch('http://localhost:4000/getrol',
+         {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
+         }
+      );
+      if (!res.ok) {
+         alert('debes iniciar sesion primero y debes ser administrador');
+         return navigate('/forbiden');
+         
+      } else {
+         const response = await res.json();
+         const rol = response.resultados.rol;
+
+
+         if (rol !== 'administrador') {
+            navigate('/perfil');
+            return;
+         }
+
+         console.log(rol);
       }
 
+   }
+   getRol();
+
+   // para validar si existe user en sesion //
+   useEffect(() => {
+
       async function fetchData() {
+
+         if (!token) {
+            navigate('/')
+            return;
+         }
+
          try {
-            const res = await fetch(`http://localhost:4000/buscar/${id}`);    //`https://meetme-production.up.railway.app/buscar/${id}`
+            const res = await fetch(`http://localhost:4000/buscar`,
+               {
+                  method: 'GET',
+                  headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario }
+               });
+
             if (!res.ok) {
-               navigate(`/crear/${id}`)
+             return navigate('/forbiden');
+               
             }
             const response = await res.json();
-            setDatos(response.registro[0]);
-            validarRol();
-         } catch (error) {
+            console.log(response.resultados);
+            setDatos(response.resultados[0]);
+
+         }
+         catch (error) {
             console.log(error)
          }
       }
       fetchData();
-      
 
-   }, [id]);
+   }, []);
    //----------------------------------------//
 
-
-
-
-   // para validar el rol del usuario //
-   async function validarRol() {
-      const res = await fetch('http://localhost:4000/getrol',   //https://meetme-production.up.railway.app/getrol
-         {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "id_usuario": id })
-         });
-
-      if (!res.ok) {
-         return false;
-      } else {
-         const response = await res.json();
-         setRol(response.resultados.rol);
-
-      }
-
-   }
-   //---------------------------------------//
- 
 
    //para actualizar la foto //
    async function ActualizarImagen(e) {
       const filee = e.target.files;
       const DATA = new FormData();
-      DATA.append('file', filee[0]);
+      DATA.append('file', filee);
       DATA.append('upload_preset', 'meetme');
       setImagen(DATA);
       setLoading(true);
@@ -107,7 +125,7 @@ function Perfil() {
    //---------------------------------------------------------//
 
    //para actualizar todos los datos //
-  async function Update(e) {
+   async function Update(e) {
       e.preventDefault();
       const res = await fetch('http://localhost:4000/actualizar',         //  https://meetme-production.up.railway.app/actualizar
          {
@@ -115,12 +133,12 @@ function Perfil() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(datos)
          });
-        if(!res.ok){
-         return  alert('error al actulizar');
-        } else{
+      if (!res.ok) {
+         return alert('error al actulizar');
+      } else {
          SuccessUpdate(datos);
-        }
       }
+   }
 
 
    //fucion para mostrar el menu responsive//
@@ -128,23 +146,29 @@ function Perfil() {
       setEstilo(!estilo);
    }
 
+   function sinMascotaCreada() {
+      alert('aun no tienes mascota creada, animate y registrala');
+      return;
+   }
 
    //--------------------------------------------------------------------//
    return (
       <>
          {loading ? Cargando() : false}
-         {datos ?
+
+         {datos.nombres ?
             <div className='div-padre'>
                <div className='item1-titulo-principal' onClick={menuResponsive}>
                   <h2><img src={menu} className="icono-menu" />MEETME</h2>
                </div>
 
-               {/*aca inicia la validacon de roles*/}
-               {rol === 'administrador' ? <HeaderAdmin id={id} /> : <HeaderUsuario id={id} />}                              {/*el menu solo para version de escritorio*/}
+               {/*--------------------------------------------------------------------------------*/}
+               <HeaderAdmin /> {/*el menu solo para version de escritorio*/}
                <div className={estilo ? 'menu-hamburgesa-activo' : 'menu-hamburgesa-oculto'} onClick={menuResponsive}>
-                  {rol === 'administrador' ? <MenuResponsiveAdmin id={id} /> : <MenuResponsiveUsuario id={id} />}           {/*el menu solo para version de movil*/}
+                  {<MenuResponsiveAdmin />}     {/*el menu solo para version de movil*/}
                </div>
-               {/*aca termina validacionde roles y adicional se pintan los componentes para el menu responsive*/}
+               {/*--------------------------------------------------------------------------------*/}
+
 
 
                <div className="item3">
@@ -181,10 +205,13 @@ function Perfil() {
                </form>
 
 
-            </div> : navigate(`/crear/${id}`)}
+            </div> : <div>
+               <span>aun no tienes mascotas registradas </span>
+               <a href="/crear"> registrar mascota</a>
+            </div>}
 
       </>
    );
 }
 
-export default Perfil;
+export default PerfilAdmin;

@@ -1,12 +1,12 @@
-import '../estilos/Crear.css';
+import '../../estilos/Crear.css';
 import { useState, useEffect } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { Warning, Error, Success, Cargando, Cargada, ErrorCargaImagen } from '../includes/Alertas.js';
-import HeaderAdmin from './HeaderAdmin.js';
-import HeaderUsuario from './HeaderUsuario.js';
-import MenuResponsiveAdmin from './MenuResponsiveAdmin.js';
-import MenuResponsiveUsuario from './MenuResponsiveUsuario.js';
-import menu from '../includes/menu.png';
+import { Warning, Error, Success, Cargando, Cargada, ErrorCargaImagen } from '../../includes/Alertas.js';
+import HeaderAdmin from '../HeaderAdmin.js';
+import HeaderUsuario from '../HeaderUsuario.js';
+import MenuResponsiveAdmin from '../MenuResponsiveAdmin.js';
+import MenuResponsiveUsuario from '../MenuResponsiveUsuario.js';
+import menu from '../../includes/menu.png';
 
 
 

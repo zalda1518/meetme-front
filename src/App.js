@@ -1,18 +1,25 @@
 import './App.css';
 import { useState } from 'react';
 import {BrowserRouter, Route,Routes } from 'react-router-dom';
-import Crear  from './componentes/Crear';
-import  HeaderUsuario  from './componentes/HeaderUsuario';
-import  HeaderAdmin  from './componentes/HeaderAdmin';
-import Registros from './componentes/Registros';
-import Login from './componentes/Login';
-import CrearUsuario from './componentes/CrearUsuario';
-import Perfil from './componentes/Perfil';
-import CodigoQr from './componentes/CodigoQr';
-import Administrar from './componentes/Administrar';
-import PublicIDMimascota from './componentes/PublicIDMimascota';
-import EditarUsuarios from './componentes/EditarUsuarios';
-import Usuarios from './componentes/Usuarios';
+//----------------------------------------------------------------
+import Crear  from './vistas/vistasAdmin/Crear';
+import RegistrosAdmin from './vistas/vistasAdmin/RegistrosAdmin';
+import CrearUsuario from './vistas/vistasAdmin/CrearUsuario';
+import PerfilAdmin from './vistas/vistasAdmin/PerfilAdmin';
+import Administrar from './vistas/vistasAdmin/Administrar';
+import PublicIDMimascota from './vistas/PublicIDMimascota';
+import EditarUsuarios from './vistas/vistasAdmin/EditarUsuarios';
+import CodigoQrAdmin from './vistas/vistasAdmin/CodigoQrAdmin';
+import Usuarios from './vistas/vistasAdmin/Usuarios';
+import Forbiden from './vistas/vistasAdmin/Forbiden';
+
+
+//----------------------------------------------------------------
+import Registros from './vistas/Registros';
+import Login from './vistas/Login';
+import Perfil from './vistas/Perfil';
+import CodigoQr from './vistas/CodigoQr';
+import ValidarRol from './controlador/Controlador';
 
 
 function App() {
@@ -30,14 +37,19 @@ function App() {
         <Route path='/' element={<Login />}/>
         <Route path='/login' element={<Login  />}/>
         <Route path='/publicIDMimascota/:id' element={<PublicIDMimascota  />}/>
-        <Route path='/crear/:id' element={<Crear  />}/>
-        <Route path='/registros/:id' element={<Registros  />}/>
-        <Route path='/perfil/:id' element={<Perfil />}/>
-        <Route path='/usuarios/:id' element={<Usuarios />}/>
-        <Route path='/administrar/:id' element={<Administrar />}/>
-        <Route path='/crearusuarios/:id' element={<CrearUsuario />}/>
-        <Route path='/editar/:id' element={<EditarUsuarios />}/>
-        <Route path='/codigo/:id' element={<CodigoQr />}/>
+        {/*administrador*/ }
+        <Route path='/registrosAdmin' element={<RegistrosAdmin  />}/>
+        <Route path='/perfilAdmin' element={<PerfilAdmin />}/>
+        <Route path='/codigoqradmin' element={<CodigoQrAdmin />}/>
+        <Route path='/crearusuarios' element={<CrearUsuario />}/>
+        <Route path='/usuarios' element={<Usuarios />}/>
+        <Route path='/forbiden' element={<Forbiden />}/>
+        {/*administrador*/ }
+
+        <Route path='/registros' element={<Registros  />}/>
+        <Route path='/perfil' element={<Perfil />}/>
+        <Route path='/codigo' element={<CodigoQr />}/>
+        <Route path='/validarRol' element={<ValidarRol/>}/>
    </Routes> 
 
    

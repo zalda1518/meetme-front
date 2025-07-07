@@ -1,70 +1,86 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import HeaderAdmin from './HeaderAdmin';
-import HeaderUsuario from './HeaderUsuario';
 import MenuResponsiveAdmin from './MenuResponsiveAdmin';
-import MenuResponsiveUsuario from './MenuResponsiveUsuario';
-import '../estilos/Usuarios.css';
-import menu from '../includes/menu.png';
+import '../../estilos/Usuarios.css';
+import menu from '../../includes/menu.png';
 
 
 
 function Usuarios() {
    const navigate = useNavigate();
-   const { id } = useParams();
    const [datos, setDatos] = useState([]);
    const [rol, setRol] = useState('');
    const [estilo, setEstilo] = useState(false); //para que no se muestre la hamburguesa en version escritorio//
+  
+   //------------------------------------------------------------------------------------------------------------
+    const token = localStorage.getItem('token');
+    const id_usuario = localStorage.getItem('id_usuario');
+   //para validar el rol del usuario//
 
-//------------------------------------------------------------------------------------------------------------
+   async function getRol() {
 
-   //para validar la sesion y buscar datos del usuario en sesion //
+      const res = await fetch('http://localhost:4000/getrol',
+         {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
+         }
+      );
+      if (!res.ok) {
+         alert('debes iniciar sesion primero y ser administrador');
+         return navigate('/forbiden');
+           
+      } else {
+         const response = await res.json();
+         const rol = response.resultados.rol;
+
+
+         if (rol !== 'administrador') {
+            alert('no eres admin');
+            navigate('/registros');
+            return;
+
+         }
+      }
+   }
+   getRol();
+
+   //----------------------------------------------------------------------------------
+     //para validar la sesion y buscar datos del usuario en sesion //
    useEffect(() => {
       async function fetchData() {
 
-         if (!localStorage.getItem('sesion')) {
+         if (!token) {
             navigate('/');
             return;
+
          } else {
-            const res = await fetch(`http://localhost:4000/usuarios`);   //https://meetme-production.up.railway.app/buscar/${id}
+
+            const res = await fetch('http://localhost:4000/usuarios',
+               {
+                  method: 'GET',
+                  headers: { 'Content-Type': 'application/json', 'auth': token }
+               });
+
             if (!res.ok) {
-               alert('no hay datos del usuario en la base de datos');
-               return;
+               alert('algo salio mal en el backend');
+               return navigate('/forbiden');
+               
             }
             const response = await res.json();
-            setDatos(response.registros);
-            console.log(response.registros);
-            validarRol();
+            console.log(response.resultados);
+            setDatos(response.resultados);
          }
       }
       fetchData();
-   }, [id]);
 
-   //------------------------------------------------------------------------------
-    // para validar el rol del usuario //
-    async function validarRol() {
-      const res = await fetch('http://localhost:4000/getrol',               //https://meetme-production.up.railway.app/getrol
-         {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "id_usuario": id })
-         });
+   }, []);
 
-      if (!res.ok) {
-         return false;
-      } else {
-         const response = await res.json();
-         setRol(response.resultados.rol);
 
-      }
+   //fucion para mostrar el menu responsive//
+   function menuResponsive() {
+      setEstilo(!estilo);
    }
-
-   //----------------------------------------------------------------------------------
-
-  //fucion para mostrar el menu responsive//
-  function menuResponsive() {
-   setEstilo(!estilo);
-}
 
    //-------------------------------------------------------------------------------------------//
    return (
@@ -76,18 +92,18 @@ function Usuarios() {
             </div>
 
             {/*aca inicia la validacion de roles*/}
-            {rol === 'administrador' ? <HeaderAdmin id={id} /> : <HeaderUsuario id={id} />}                        {/*el menu solo para version de escritorio*/}
-               <div className={estilo ? 'menu-hamburgesa-activo' : 'menu-hamburgesa-oculto'} onClick={menuResponsive}>
-                  {rol === 'administrador' ? <MenuResponsiveAdmin id={id} /> : <MenuResponsiveUsuario id={id} />}     {/*el menu solo para version de movil*/}
-               </div>
-               {/*aca termina validacionde roles y adicional se pintan los componentes para el menu responsive*/}
+            {<HeaderAdmin />}                        {/*el menu solo para version de escritorio*/}
+            <div className={estilo ? 'menu-hamburgesa-activo' : 'menu-hamburgesa-oculto'} onClick={menuResponsive}>
+               {<MenuResponsiveAdmin />}     {/*el menu solo para version de movil*/}
+            </div>
+            {/*aca termina validacionde roles y adicional se pintan los componentes para el menu responsive*/}
 
             <div className="div-tabla-usuarios">
                <table className="tabla-usuarios">
                   <thead className="thead-usuarios">
                      <tr className="tr-usuarios">
                         <th className="th-usuarios">ID USUARIO</th>
-                        <th className="th-usuarios">CORREO</th>
+                        <th className="th-usuarios">CORREO/USUARIO</th>
                         <th className="th-usuarios">ROL</th>
                         <th className="th-usuarios"></th>
                         <th className="th-usuarios"></th>
@@ -99,8 +115,8 @@ function Usuarios() {
                            <td className="td-usuarios">{item.id_usuario}</td>
                            <td className="td-usuarios">{item.correo}</td>
                            <td className="td-usuarios">{item.rol}</td>
-                           <td className="td-usuarios"><a href={`/borrar/${item.id_mascota}`}>Borrar</a></td>
-                           <td className="td-usuarios"><a href={`/editar/${item.id_mascota}`}>Editar</a></td>
+                          {/*  <td className="td-usuarios"><a href={`/borrar/${item.id_mascota}`}>Borrar</a></td>
+                           <td className="td-usuarios"><a href={`/editar/${item.id_mascota}`}>Editar</a></td> */}
                         </tr>
                      )) : alert('no hay datos registrados')}
                   </tbody>
