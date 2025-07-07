@@ -11,6 +11,9 @@ import PublicIDMimascota from './vistas/PublicIDMimascota';
 import EditarUsuarios from './vistas/vistasAdmin/EditarUsuarios';
 import CodigoQrAdmin from './vistas/vistasAdmin/CodigoQrAdmin';
 import Usuarios from './vistas/vistasAdmin/Usuarios';
+import Forbiden from './vistas/vistasAdmin/Forbiden';
+
+
 //----------------------------------------------------------------
 import Registros from './vistas/Registros';
 import Login from './vistas/Login';
@@ -35,14 +38,12 @@ function App() {
         <Route path='/login' element={<Login  />}/>
         <Route path='/publicIDMimascota/:id' element={<PublicIDMimascota  />}/>
         {/*administrador*/ }
-        <Route path='/crear' element={<Crear  />}/>
         <Route path='/registrosAdmin' element={<RegistrosAdmin  />}/>
         <Route path='/perfilAdmin' element={<PerfilAdmin />}/>
-        <Route path='codigoqradmin' element={<CodigoQrAdmin />}/>
-        <Route path='/administrar' element={<Administrar />}/>
+        <Route path='/codigoqradmin' element={<CodigoQrAdmin />}/>
         <Route path='/crearusuarios' element={<CrearUsuario />}/>
         <Route path='/usuarios' element={<Usuarios />}/>
-        <Route path='/editar' element={<EditarUsuarios />}/>
+        <Route path='/forbiden' element={<Forbiden />}/>
         {/*administrador*/ }
 
         <Route path='/registros' element={<Registros  />}/>

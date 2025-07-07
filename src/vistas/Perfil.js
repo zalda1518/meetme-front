@@ -1,10 +1,8 @@
-import { use, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import '../estilos/Perfil.css';
 import menu from '../includes/menu.png';
 import HeaderUsuario from "./HeaderUsuario.js";
-import HeaderAdmin from "./HeaderAdmin.js";
-import MenuResponsiveAdmin from './MenuResponsiveAdmin.js'
 import MenuResponsiveUsuario from './MenuResponsiveUsuario.js'
 import { Warning, Error, Success, Cargando, Cargada, ErrorCargaImagen, SuccessUpdate } from '../includes/Alertas.js';
 
@@ -35,7 +33,8 @@ function Perfil() {
     );
     if (!res.ok) {
       alert('debes iniciar sesion primero');
-         return;
+         return navigate('/forbiden');
+        
     } else {
       const response = await res.json();
       const rol = response.resultados.rol;
@@ -69,7 +68,7 @@ function Perfil() {
           });
 
         if (!res.ok) {
-          navigate(`/crear`)
+          navigate(`/forbiden`)
         }
         const response = await res.json();
         console.log(response.resultados[0].nombres);
@@ -170,7 +169,7 @@ function Perfil() {
 
           <div className="item3">
             <h3 className="titulo-datos-dueño-perfil">TUS DATOS REGISTRADOS</h3>
-            <span className="titulos-div1"><h5>Nombres</h5>{datos.nombres}</span>
+            <span className="titulos-div1"><h5>Nombres </h5> {datos.nombres}</span>
             <span className="titulos-div1"><h5>Apellidos</h5>{datos.apellidos}</span>
             <span className="titulos-div1"><h5>Ciudad</h5> {datos.ciudad}</span>
             <span className="titulos-div1"><h5>Direccion</h5>{datos.direccion}</span>
@@ -180,6 +179,7 @@ function Perfil() {
             <span className="titulos-div1"><h5>Tipo de Animal</h5> {datos.tipo_animal}</span>
             <span className="titulos-div1"><h5>Raza</h5> {datos.raza}</span>
             <span className="titulos-div1"><h5>Edad</h5> {datos.edad}</span>
+            
           </div>
 
           <form className="item4">

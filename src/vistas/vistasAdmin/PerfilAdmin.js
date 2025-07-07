@@ -1,11 +1,9 @@
-import { use, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import '../../estilos/Perfil.css';
 import menu from '../../includes/menu.png';
-import HeaderUsuario from "../HeaderUsuario.js";
-import HeaderAdmin from "../HeaderAdmin.js";
-import MenuResponsiveAdmin from '../MenuResponsiveAdmin.js'
-import MenuResponsiveUsuario from '../MenuResponsiveUsuario.js'
+import HeaderAdmin from "./HeaderAdmin.js";
+import MenuResponsiveAdmin from './MenuResponsiveAdmin.js'
 import { Warning, Error, Success, Cargando, Cargada, ErrorCargaImagen, SuccessUpdate } from '../../includes/Alertas.js';
 
 function PerfilAdmin() {
@@ -34,7 +32,8 @@ function PerfilAdmin() {
       );
       if (!res.ok) {
          alert('debes iniciar sesion primero y debes ser administrador');
-         return;
+         return navigate('/forbiden');
+         
       } else {
          const response = await res.json();
          const rol = response.resultados.rol;
@@ -69,7 +68,8 @@ function PerfilAdmin() {
                });
 
             if (!res.ok) {
-               navigate(`/crear`)
+             return navigate('/forbiden');
+               
             }
             const response = await res.json();
             console.log(response.resultados);

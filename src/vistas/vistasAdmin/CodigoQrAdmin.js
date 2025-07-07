@@ -1,10 +1,10 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { QRCodeCanvas } from 'qrcode.react';
 import '../../estilos/CodigoQr.css';
 import menu from '../../includes/menu.png';
-import HeaderAdmin from '../HeaderAdmin.js';
-import MenuResponsiveAdmin from '../MenuResponsiveAdmin.js';
+import HeaderAdmin from './HeaderAdmin.js';
+import MenuResponsiveAdmin from './MenuResponsiveAdmin.js';
 import { AlertaQR, QRGenerado } from '../../includes/Alertas.js';
 
 function CodigoQrAdmin() {
@@ -29,7 +29,7 @@ function CodigoQrAdmin() {
 
     if (!res.ok) {
       alert('debes iniciar sesion primero y debes ser administrador');
-         return;
+         return navigate('/forbiden');
     } else {
       const response = await res.json();
       const rol = response.resultados.rol;

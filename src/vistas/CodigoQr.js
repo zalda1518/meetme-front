@@ -3,9 +3,7 @@ import { useState, useEffect } from "react";
 import { QRCodeCanvas } from 'qrcode.react';
 import '../estilos/CodigoQr.css';
 import menu from '../includes/menu.png';
-import HeaderAdmin from './HeaderAdmin.js';
 import HeaderUsuario from './HeaderUsuario.js';
-import MenuResponsiveAdmin from './MenuResponsiveAdmin.js';
 import MenuResponsiveUsuario from './MenuResponsiveUsuario.js';
 import { AlertaQR, QRGenerado } from '../includes/Alertas.js';
 
@@ -31,7 +29,8 @@ function CodigoQr() {
 
     if (!res.ok) {
          alert('debes iniciar sesion primero');
-         return;
+         return navigate('/forbiden');
+         
     } else {
       const response = await res.json();
       const rol = response.resultados.rol;
@@ -62,7 +61,7 @@ function CodigoQr() {
           });
 
         if (!res.ok) {
-          navigate(`/crear`)
+          navigate(`/forbiden`)
         }
         const response = await res.json();
         console.log(response.resultados[0].nombres);

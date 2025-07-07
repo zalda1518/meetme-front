@@ -1,17 +1,18 @@
-import '../../estilos/CrearUsuario.css';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { Warning, Error, Success } from '../../includes/Alertas';
-import HeaderAdmin from '../HeaderAdmin';
-import HeaderUsuario from '../HeaderUsuario';
-import MenuResponsiveAdmin from '../MenuResponsiveAdmin';
-import MenuResponsiveUsuario from '../MenuResponsiveUsuario';
-import menu from '../../includes/menu.png';
 import { useEffect, useState } from 'react';
+import '../../estilos/CrearUsuario.css';
+import { useNavigate } from 'react-router-dom';
+import { Warning, Error, Success } from '../../includes/Alertas';
+import HeaderAdmin from './HeaderAdmin';
+import MenuResponsiveAdmin from './MenuResponsiveAdmin';
+import menu from '../../includes/menu.png';
+
 
 function CrearUsuario() {
 
-   const { id } = useParams();
-   const [rol, setRol] = useState('');
+   const token = localStorage.getItem('token');
+   const id_usuario = localStorage.getItem('id_usuario');
+
+   const navigate = useNavigate();
    const [estilo, setEstilo] = useState(false); //para que no se muestre la hamburguesa en version escritorio//
    const [data, setData] = useState({});
    const [user, setUser] = useState({
@@ -22,27 +23,33 @@ function CrearUsuario() {
    });
 
    //-----------------------------------------------------------------------------------------   
-   useEffect(() => {
-      // para validar el rol del usuario //
-      async function validarRol() {
-         const res = await fetch('http://localhost:4000/getrol',               //https://meetme-production.up.railway.app/getrol
-            {
-               method: 'POST',
-               headers: { 'Content-Type': 'application/json' },
-               body: JSON.stringify({ "id_usuario": id })
-            });
+   //para validar el rol del usuario//
 
-         if (!res.ok) {
-            return false;
-         } else {
-            const response = await res.json();
-            setRol(response.resultados.rol);
+   async function getRol() {
+
+      const res = await fetch('http://localhost:4000/getrol',
+         {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
+         }
+      );
+      if (!res.ok) {
+           alert('debes iniciar sesion primero y ser administrador');
+           return navigate('/forbiden');
+      } else {
+         const response = await res.json();
+         const rol = response.resultados.rol;
+
+
+         if (rol !== 'administrador') {
+            alert('no eres admin');
+            navigate('/registros');
+            return;
+
          }
       }
-      validarRol();
-
-
-   }, [])
+   }
+   getRol();
    //-----------------------------------------------------------------------------------
    function handleDatos(e) {
 
@@ -50,25 +57,40 @@ function CrearUsuario() {
       setData({ name: value });
       setUser({ ...user, [name]: value })
    }
+
+
    //---------------------------------------------------------------------------------------------
    async function enviarDatos(e) {
+
       e.preventDefault();
       if (user.correo === '' || user.clave === '' || user.rol === '') {
          return alert('campos vacios');
       }
-        
-      const res = await fetch('http://localhost:4000/crearUsuario',   //'https://meetme-production.up.railway.app/crearUsuario'
-         {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(user)
-         });
-      if (!res.ok) {
-         return alert('no se pudo crear el nuevo usuario')
+
+      try {
+
+         const res = await fetch('http://localhost:4000/crearUsuario',
+            {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+               body: JSON.stringify(user)
+            });
+         if (!res.ok) {
+            return alert('no se pudo crear el nuevo usuario')
+
+         }
+
+           alert('usuario creado')
+           console.log(user);
+
+      } catch (error) {
+         alert('error')
+         return;
       }
-          alert('usuario creado');
-          window.location.reload();
+
    }
+
+
    //------------------------------------------------------------------------------------------------------
    function menuResponsive() {
       setEstilo(!estilo);
@@ -81,9 +103,9 @@ function CrearUsuario() {
          </div>
 
          {/*aca inicia la validacion de roles*/}
-         {rol === 'administrador' ? <HeaderAdmin id={id} /> : <HeaderUsuario id={id} />}                        {/*el menu solo para version de escritorio*/}
+         {<HeaderAdmin />}                        {/*el menu solo para version de escritorio*/}
          <div className={estilo ? 'menu-hamburgesa-activo' : 'menu-hamburgesa-oculto'} onClick={menuResponsive}>
-            {rol === 'administrador' ? <MenuResponsiveAdmin id={id} /> : <MenuResponsiveUsuario id={id} />}     {/*el menu solo para version de movil*/}
+            {<MenuResponsiveAdmin />}     {/*el menu solo para version de movil*/}
          </div>
          {/*aca termina validacionde roles y adicional se pintan los componentes para el menu responsive*/}
 

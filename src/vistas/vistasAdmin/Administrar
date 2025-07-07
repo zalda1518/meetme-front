@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import '../../estilos/Administrar.css';
-import HeaderUsuario from "../HeaderUsuario";
-import HeaderAdmin from "../HeaderAdmin";
+import HeaderAdmin from "./HeaderAdmin";
+import MenuResponsiveAdmin from "./MenuResponsiveAdmin";
+
 import Map from "../Map";
 import menu from '../../includes/menu.png';
-import MenuResponsiveUsuario from "../MenuResponsiveUsuario";
-import MenuResponsiveAdmin from "../MenuResponsiveAdmin";
 
 function Administrar() {
    const { id } = useParams();
@@ -96,9 +95,9 @@ function Administrar() {
             </div>
 
             {/*aca inicia la validacon de roles*/}
-            {rol === 'administrador' ? <HeaderAdmin id={id} /> : <HeaderUsuario id={id} />}                              {/*el menu solo para version de escritorio*/}
+            {<HeaderAdmin />}                              {/*el menu solo para version de escritorio*/}
             <div className={estilo ? 'menu-hamburgesa-activo' : 'menu-hamburgesa-oculto'} onClick={menuResponsive}>
-               {rol === 'administrador' ? <MenuResponsiveAdmin id={id} /> : <MenuResponsiveUsuario id={id} />}           {/*el menu solo para version de movil*/}
+               {<MenuResponsiveAdmin /> }           {/*el menu solo para version de movil*/}
             </div>
             {/*aca termina validacionde roles y adicional se pintan los componentes para el menu responsive*/}
 

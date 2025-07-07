@@ -41,7 +41,6 @@ function Login() {               //inicia el componente//
    
       } else {
          const response = await res.json();
-        
          localStorage.setItem('token', response.token);
          localStorage.setItem('id_usuario', response.id_usuario);
          Bienvenido();

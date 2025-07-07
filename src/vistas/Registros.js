@@ -27,7 +27,7 @@ function Registros() {
       );
       if (!res.ok) {
          alert('debes iniciar sesion primero');
-         return;
+         return navigate('/forbiden');
       } else {
          const response = await res.json();
          const rol = response.resultados.rol;
@@ -36,7 +36,6 @@ function Registros() {
          if (rol === 'administrador') {
             navigate('/registrosadmin');
             return;
-
          }
       }
    }

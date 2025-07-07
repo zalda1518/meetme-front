@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../../estilos/Registros.css';
-import HeaderAdmin from "../HeaderAdmin";
+import HeaderAdmin from "../vistasAdmin/HeaderAdmin";
 import menu from '../../includes/menu.png';
-import MenuResponsiveAdmin from "../MenuResponsiveAdmin";
+import MenuResponsiveAdmin from "../vistasAdmin/MenuResponsiveAdmin";
 //------------------------------------------------------------------//
 
 function RegistrosAdmin() {
@@ -27,7 +27,8 @@ function RegistrosAdmin() {
       );
       if (!res.ok) {
          alert('debes iniciar sesion primero y ser administrador');
-         return;
+         return navigate('/forbiden');
+         
       } else {
          const response = await res.json();
          const rol = response.resultados.rol;
@@ -61,7 +62,8 @@ function RegistrosAdmin() {
 
             if (!res.ok) {
                alert('algo salio mal en el backend');
-               return;
+                return navigate('/forbiden');
+               
             }
             const response = await res.json();
             console.log(response.resultados);
