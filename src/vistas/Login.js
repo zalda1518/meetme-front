@@ -1,9 +1,10 @@
 import '../estilos/Login.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import  BuscarID  from './BuscarID.js';
+import BuscarID from './BuscarID.js';
 import { Warning, ErrorUsuario, Bienvenido } from '../includes/Alertas.js';
 import ValidarRol from '../controlador/Controlador.js';
+import logometme from '../includes/logo-meetme.png';
 
 
 function Login() {               //inicia el componente//
@@ -17,10 +18,11 @@ function Login() {               //inicia el componente//
 
    function handleChange(e) {
       const { name, value } = e.target;
-      setData({ name: value });
+      setData({ [name]: value });
       setUser({ ...user, [name]: value });
    }
 
+//----------------------------------------------------------------------------------------------------
    async function ingresar(e) {
       e.preventDefault();
       if (user.correo === '' || user.clave === '') {
@@ -36,33 +38,46 @@ function Login() {               //inicia el componente//
          });
 
       if (!res.ok) {
-          ErrorUsuario();
-          return;
-   
+         ErrorUsuario();
+         return;
+
       } else {
          const response = await res.json();
          localStorage.setItem('token', response.token);
          localStorage.setItem('id_usuario', response.id_usuario);
          Bienvenido();
-         
+
          ValidarRol(navigate); //controlador validar rol
       }
 
    }
+   //------------------------------------------------------------------------------------------//
    return (
       <div className='login-padre'>
-         <div className='div-padre-login'>
-            <h3 className='titulo-iniciar-sesion-login'>Iniciar sesion</h3>
-            <input type='email' placeholder="Correo" name='correo'  className='login-input' onChange={handleChange} />
-            <input type='text' placeholder="Contraseña" name='clave' className='login-input' onChange={handleChange} />
-            <button className='btn-ingresar-login' type='button' onClick={ingresar}>Ingresar</button>
+         <div className='login-box-1'>
+            <h2 className='login-box-titulo'>Iniciar sesion</h2>
+            <p className='login-box-parrafo'>Ingresa a Meetme</p>
+            <input type='email' placeholder="Correo" name='correo' className='login-box-input' onChange={handleChange} />
+            <input type='text' placeholder="Contraseña" name='clave' className='login-box-input' onChange={handleChange} />
+            <button className='login-box-btn-ingresar' type='button' onClick={ingresar}>Ingresar</button>
+
+
+
+            <div className="extra-links">
+               <a href="#" className='login-box-olvidar-clave'>¿Olvidaste tu contraseña?</a>
+               <a href="#" className='login-box-crear-cuenta'>Crear cuenta</a>
+            </div>
          </div>
-         <div className='div-imagen-login'>
-            <img className='img-logo-login' src='https://res.cloudinary.com/dhxxqo1gt/image/upload/v1743382114/Meetme_Logo_xowgmd.png' alt='not-found' />
-            <h3 className='titulo-meetme-login'>Conoce diferentes mascotas, y ayudalas a encontrar su hogar</h3>
+
+         <div className='login-box-2'>
+            <h3 className='login-box-titulo-meetme'>Conoce diferentes mascotas, y ayudalas a encontrar su hogar</h3>
             <BuscarID />
+           
+            <div className='login-box-logo'>
+               <img src={logometme} />
+            </div>
          </div>
-         
+
       </div>
    );
 }

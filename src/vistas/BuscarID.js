@@ -28,8 +28,8 @@ function BuscarID() {
 
    return (
       <div className="div-buscar-id">
-         <input type="number" name="buscarID" placeholder="Ingresa el ID" className="input-buscar-id" onChange={handleChange} />
-         <button className="btn-buscar-id" onClick={Buscar}>Buscar por ID</button>
+         <input type="number" name="buscarID" placeholder="Ingresa el ID" className="login-box-input-buscar" onChange={handleChange} />
+         <button className="login-box-btn-buscar" onClick={Buscar}>Buscar por ID</button>
       </div>
    );
 }

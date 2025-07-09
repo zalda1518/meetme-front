@@ -2,13 +2,10 @@ import './App.css';
 import { useState } from 'react';
 import {BrowserRouter, Route,Routes } from 'react-router-dom';
 //----------------------------------------------------------------
-import Crear  from './vistas/vistasAdmin/Crear';
 import RegistrosAdmin from './vistas/vistasAdmin/RegistrosAdmin';
 import CrearUsuario from './vistas/vistasAdmin/CrearUsuario';
 import PerfilAdmin from './vistas/vistasAdmin/PerfilAdmin';
-import Administrar from './vistas/vistasAdmin/Administrar';
 import PublicIDMimascota from './vistas/PublicIDMimascota';
-import EditarUsuarios from './vistas/vistasAdmin/EditarUsuarios';
 import CodigoQrAdmin from './vistas/vistasAdmin/CodigoQrAdmin';
 import Usuarios from './vistas/vistasAdmin/Usuarios';
 import Forbiden from './vistas/vistasAdmin/Forbiden';
@@ -20,6 +17,7 @@ import Login from './vistas/Login';
 import Perfil from './vistas/Perfil';
 import CodigoQr from './vistas/CodigoQr';
 import ValidarRol from './controlador/Controlador';
+import CrearMascota from './vistas/CrearMascota';
 
 
 function App() {
@@ -47,6 +45,7 @@ function App() {
         {/*administrador*/ }
 
         <Route path='/registros' element={<Registros  />}/>
+        <Route path='/crearMascota' element={<CrearMascota  />}/>
         <Route path='/perfil' element={<Perfil />}/>
         <Route path='/codigo' element={<CodigoQr />}/>
         <Route path='/validarRol' element={<ValidarRol/>}/>

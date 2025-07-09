@@ -111,7 +111,7 @@ function Usuarios() {
                   </thead>
                   <tbody>
                      {datos ? datos.map((item) => (
-                        <tr key={item.id}>
+                        <tr key={item.id_usuario}>
                            <td className="td-usuarios">{item.id_usuario}</td>
                            <td className="td-usuarios">{item.correo}</td>
                            <td className="td-usuarios">{item.rol}</td>

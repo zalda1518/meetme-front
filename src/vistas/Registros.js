@@ -14,10 +14,19 @@ function Registros() {
 
    const token = localStorage.getItem('token');
    const id_usuario = localStorage.getItem('id_usuario');
-   
-//para validar el rol del usuario//
+
+   //para validar el rol del usuario//
+
+   useEffect(() => {
+      if (!token) {
+         alert('debes iniciar sesion primero');
+         navigate('/forbiden');
+         return;
+      }
+   }, []);
 
    async function getRol() {
+
 
       const res = await fetch('http://localhost:4000/getrol',
          {
@@ -27,7 +36,8 @@ function Registros() {
       );
       if (!res.ok) {
          alert('debes iniciar sesion primero');
-         return navigate('/forbiden');
+         navigate('/forbiden');
+         return;
       } else {
          const response = await res.json();
          const rol = response.resultados.rol;
@@ -46,28 +56,23 @@ function Registros() {
    useEffect(() => {
       async function fetchData() {
 
-         if (!token) {
-            navigate('/');
+         const res = await fetch('http://localhost:4000/registros',
+            {
+               method: 'GET',
+               headers: { 'Content-Type': 'application/json', 'auth': token }
+            });
+
+         if (!res.ok) {
+            alert('algo salio mal en el backend');
+            navigate('/forbiden');
             return;
-
-         } else {
-
-            const res = await fetch('http://localhost:4000/registros',
-               {
-                  method: 'GET',
-                  headers: { 'Content-Type': 'application/json', 'auth': token }
-               });
-
-            if (!res.ok) {
-               alert('algo salio mal en el backend');
-               return;
-            }
-            const response = await res.json();
-            setDatos(response.resultados);
-
-            // console.log(response.resultados[0]);
-
          }
+         const response = await res.json();
+         setDatos(response.resultados);
+
+         // console.log(response.resultados[0]);
+
+
       }
       fetchData();
 
@@ -76,6 +81,7 @@ function Registros() {
    //fucion para mostrar el menu responsive//
    function menuResponsive() {
       setEstilo(!estilo);
+      
    }
 
 
@@ -121,7 +127,7 @@ function Registros() {
 
             </div> : <div>
                <h3>aun no tienes mascotas registradas </h3>
-               <a href="/crear"> registrar mascota</a>
+               <a href="/crearMascota"> registrar mascota</a>
             </div>}
 
       </>

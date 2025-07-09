@@ -20,7 +20,14 @@ function Perfil() {
 
   const token = localStorage.getItem('token');
   const id_usuario = localStorage.getItem('id_usuario');
-
+ 
+   useEffect(() => {
+      if (!token) {
+         alert('debes iniciar sesion primero');
+         navigate('/forbiden');
+         return;
+      }
+   }, []);
 
   // para validar el rol del usuario //
   async function getRol() {
@@ -48,17 +55,14 @@ function Perfil() {
     }
 
   }
+
   getRol();
 
   // para validar si existe user en sesion //
   useEffect(() => {
 
-    async function fetchData() {
 
-      if (!token) {
-        navigate('/')
-        return;
-      }
+    async function fetchData() {
 
       try {
         const res = await fetch(`http://localhost:4000/buscar`,

@@ -19,6 +19,15 @@ function CodigoQr() {
   const id_usuario = localStorage.getItem('id_usuario');
 
 
+   useEffect(() => {
+      if (!token) {
+         alert('debes iniciar sesion primero');
+         navigate('/forbiden');
+         return;
+      }
+   }, []);
+
+
   // para validar el rol del usuario //
   async function getRol() {
     const res = await fetch('http://localhost:4000/getrol',            //https://meetme-production.up.railway.app/getrol
@@ -48,10 +57,6 @@ function CodigoQr() {
 
     async function fetchData() {
 
-      if (!token) {
-        navigate('/')
-        return;
-      }
 
       try {
         const res = await fetch(`http://localhost:4000/buscar`,
@@ -64,8 +69,8 @@ function CodigoQr() {
           navigate(`/forbiden`)
         }
         const response = await res.json();
-        console.log(response.resultados[0].nombres);
-        setDatos(response.resultados[0]);
+        console.log(response.resultados[0]);
+        setDatos(response.resultados);
 
       }
       catch (error) {
@@ -98,8 +103,8 @@ function CodigoQr() {
 
   //-----------------------------------------------//
   return (
-    <>
-      <div className="div-padre-qr">
+    <> {datos.length >= 1 ? 
+     <div className="div-padre-qr">
         <div className='titulo-principal-qr' onClick={menuResponsive} >
           <h2 className="h2-qr"><img src={menu} className="icono-menu" />MEETME</h2>
         </div>
@@ -118,7 +123,8 @@ function CodigoQr() {
 
         </div> : <button onClick={generarQr} className="btn-generar-qr">Generar QR</button>}
 
-      </div>
+      </div> : <a href="/crear">registrar mascota</a> } 
+      
     </>
   );
 }

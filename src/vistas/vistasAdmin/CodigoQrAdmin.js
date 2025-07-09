@@ -33,7 +33,9 @@ function CodigoQrAdmin() {
     } else {
       const response = await res.json();
       const rol = response.resultados.rol;
+      
       if (rol !== 'administrador') {
+         alert('no eres admin')
          navigate('/codigo');
         return;
       }

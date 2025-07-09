@@ -40,6 +40,7 @@ function PerfilAdmin() {
 
 
          if (rol !== 'administrador') {
+            alert('no eres admin')
             navigate('/perfil');
             return;
          }

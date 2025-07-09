@@ -5,7 +5,8 @@
     background-color:rgba(236, 239, 240, 0.541);
 }
 .titulo-principal-qr{
-   background-color:rgb(55, 63, 65);
+    background: linear-gradient(to right top, #625e77, #928dab);
+   
     color: white;
     min-height:40px;
     width: 100%;
