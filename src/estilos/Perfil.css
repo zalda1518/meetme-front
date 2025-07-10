@@ -3,7 +3,7 @@
     box-sizing: border-box;
     flex-wrap: wrap;
     width: 100%;
-    background-color:rgba(236, 239, 240, 0.541);
+    background-color: #4a4848;
     margin: 0;
     min-height: 1024px;
  }
@@ -12,9 +12,9 @@
  
  .item1-titulo-principal{
     width: 100%;
-    background: linear-gradient(to right top, #625e77, #928dab);
-    
-    color: white;
+    background-color: #262424;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); 
+    color: #FFFFFF;
     padding-left: 2%;
  }
  .menu-hamburgesa-oculto{
@@ -45,9 +45,10 @@
    flex-direction: column;
    text-align: center;
    height: 40px;
-   padding: 5px;
-   background-color:rgba(193, 204, 207, 0.541);
-   border-radius: 10px;
+    background-color: #262424;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); 
+   color: #FFFFFF;
+   padding-left: 2%;
  }
  #input-imagen::file-selector-button{
    font-family: Arial, Helvetica, sans-serif;
@@ -95,7 +96,9 @@
    padding: 2%;
   border: none;
   border-radius: 5px;
-  background-color:rgba(193, 204, 207, 0.541);
+   background-color: #262424;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); 
+   color: #FFFFFF;
 
    
 }
@@ -105,7 +108,8 @@
    margin-left: 20%;
    margin-top: 2%;
    margin-bottom: 5%;
-   background-color: rgb(57, 228, 57);
+    background-color: #161212;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); 
    border: none;
    color: white;
 }
@@ -123,9 +127,7 @@
      display: none;
    }
   
-   .div-padre{
-      height: 1000px;
-   }
+   
    .item1-titulo-principal{
       height: 90px;
    }

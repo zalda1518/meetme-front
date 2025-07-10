@@ -32,7 +32,7 @@ function Perfil() {
   // para validar el rol del usuario //
   async function getRol() {
 
-    const res = await fetch('http://localhost:4000/getrol',
+    const res = await fetch('https://meetme-back-production.up.railway.app/getrol', //https://meetme-back-production.up.railway.app/getrol
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
@@ -65,7 +65,7 @@ function Perfil() {
     async function fetchData() {
 
       try {
-        const res = await fetch(`http://localhost:4000/buscar`,
+        const res = await fetch(`https://meetme-back-production.up.railway.app/buscar`,  //https://meetme-back-production.up.railway.app/buscar
           {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario }
@@ -131,7 +131,7 @@ function Perfil() {
   async function Update(e) {
 
     e.preventDefault();
-    const res = await fetch('http://localhost:4000/actualizar',         //  https://meetme-production.up.railway.app/actualizar
+    const res = await fetch('https://meetme-back-production.up.railway.app/actualizar',   //  https://meetme-back-production.up.railway.app/actualizar
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

@@ -9,7 +9,6 @@ import { AlertaQR, QRGenerado } from '../includes/Alertas.js';
 
 function CodigoQr() {
   const navigate = new useNavigate();
-  const { id } = useParams();
   const [datos, setDatos] = useState([]);
   const [qrGenerado, setQrGenerado] = useState('');
   const [estilo, setEstilo] = useState(false); //para que no se muestre la hamburguesa en version escritorio//
@@ -30,7 +29,7 @@ function CodigoQr() {
 
   // para validar el rol del usuario //
   async function getRol() {
-    const res = await fetch('http://localhost:4000/getrol',            //https://meetme-production.up.railway.app/getrol
+    const res = await fetch('https://meetme-back-production.up.railway.app/getrol',            //ttps://meetme-back-production.up.railway.app/getrol
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
@@ -59,7 +58,7 @@ function CodigoQr() {
 
 
       try {
-        const res = await fetch(`http://localhost:4000/buscar`,
+        const res = await fetch(`https://meetme-back-production.up.railway.app/buscar`,  //https://meetme-back-production.up.railway.app/buscar
           {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario }
@@ -69,7 +68,7 @@ function CodigoQr() {
           navigate(`/forbiden`)
         }
         const response = await res.json();
-        console.log(response.resultados[0]);
+       // console.log(response.resultados[0]);
         setDatos(response.resultados);
 
       }
@@ -89,8 +88,8 @@ function CodigoQr() {
     if (!datos) {
       return AlertaQR();
     }
-    const PID = datos.publicID;
-    const valueCode = `http://localhost:4000/publicIDMimascota/${PID}`;     //https://meetmeio.netlify.app/publicIDMimascota/${PID}
+    const PID = datos[0].publicID;
+    const valueCode = `https://meetme-back-production.up.railway.app/public/${PID}`;     //https://meetme-back-production.up.railway.app/publicIDMimascota/${PID}
     setQrGenerado(valueCode);
     QRGenerado();
 

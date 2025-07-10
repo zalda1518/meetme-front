@@ -6,7 +6,7 @@ async function ValidarRol(navigate) {
   const token = localStorage.getItem('token');
   const id_usuario = localStorage.getItem('id_usuario');
 
-  const res = await fetch('http://localhost:4000/getrol',
+  const res = await fetch('https://meetme-back-production.up.railway.app/getrol', //https://meetme-back-production.up.railway.app/getrol
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },

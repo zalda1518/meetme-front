@@ -28,7 +28,7 @@ function Registros() {
    async function getRol() {
 
 
-      const res = await fetch('http://localhost:4000/getrol',
+      const res = await fetch('https://meetme-back-production.up.railway.app/getrol',  //https://meetme-back-production.up.railway.app/getrol
          {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
@@ -56,7 +56,7 @@ function Registros() {
    useEffect(() => {
       async function fetchData() {
 
-         const res = await fetch('http://localhost:4000/registros',
+         const res = await fetch('https://meetme-back-production.up.railway.app/registros', //https://meetme-back-production.up.railway.app/registros
             {
                method: 'GET',
                headers: { 'Content-Type': 'application/json', 'auth': token }

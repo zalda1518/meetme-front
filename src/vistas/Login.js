@@ -30,7 +30,7 @@ function Login() {               //inicia el componente//
          return;
       }
 
-      const res = await fetch('http://localhost:4000/login',  //https://meetme-production.up.railway.app/login
+      const res = await fetch('https://meetme-back-production.up.railway.app/login', //  https://meetme-back-production.up.railway.app/login
          {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

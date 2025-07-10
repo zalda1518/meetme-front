@@ -5,10 +5,16 @@
 
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right top, #1f1c2c, #928dab);
-  min-height: 100vh;
+   font-family: 'Poppins', sans-serif;
+   background-color: #4a4848;
+    color: #E0E0E0;
+     animation: anim 0.8s ease-in forwards;
 }
+@keyframes anim {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 
 .login-padre {
   width: 100%;
@@ -17,7 +23,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   padding-top: 5%;
-  
 }
 
 .login-box-1 {
@@ -26,13 +31,12 @@ body {
   border-radius: 20px;
   padding: 40px 30px;
   width: 100%;
-  margin-left: 10%;
+  margin-left: 25%;
   max-width: 400px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   color: #fff;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  animation: fadeIn 0.7s ease;
 }
 
 
@@ -123,7 +127,7 @@ body {
   border-radius: 20px;
   padding: 40px 30px;
   width: 100%;
-  margin-left: 10%;
+ margin-left: 5%;
   max-width: 400px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   color: #fff;
@@ -193,13 +197,42 @@ body {
 }
 
 /* Responsive: pantallas pequeñas */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 760px) {
   .login-box-1{
-    margin-left: 0%;
+    margin:auto;
   }
   .login-box-2{
-    margin-left: 0%;
+    margin:auto;
+    margin-top: 2%;
+    
   }
+
+  .login-box {
+    padding: 30px 20px;
+  }
+
+  .login-box h2 {
+    font-size: 1.5rem;
+  }
+
+  .extra-links {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* Responsive: pantallas pequeñas */
+@media screen and (max-width: 1024px) {
+  .login-box-1{
+    margin:auto;
+  }
+  .login-box-2{
+    margin:auto;
+    margin-top: 2%;
+    
+  }
+
   .login-box {
     padding: 30px 20px;
   }

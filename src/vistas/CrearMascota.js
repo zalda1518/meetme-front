@@ -39,7 +39,7 @@ function CrearMascota() {
          return;
       }
 
-      const res = await fetch('http://localhost:4000/getrol',
+      const res = await fetch('https://meetme-back-production.up.railway.app/getrol',      //https://meetme-back-production.up.railway.app/getrol
          {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
@@ -133,7 +133,7 @@ function CrearMascota() {
       } else {
 
 
-         fetch('http://localhost:4000/crear',   //https://meetme-production.up.railway.app/crear'
+         fetch('https://meetme-back-production.up.railway.app/crear',   //https://meetme-back-production.up.railway.app/crear'
             {
                method: 'POST',
                headers: { 'Content-Type': 'application/json' },

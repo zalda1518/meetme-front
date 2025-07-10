@@ -2,12 +2,15 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    background-color:rgba(236, 239, 240, 0.541);
+    background-color: #4a4848;
+   min-height: 1024px;
+
+    
 }
 .titulo-principal-qr{
-    background: linear-gradient(to right top, #625e77, #928dab);
-   
-    color: white;
+    background-color: #262424;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); 
+    color: #FFFFFF;
     min-height:40px;
     width: 100%;
     margin-bottom: 0;
@@ -22,10 +25,11 @@
 
 .div-qr{
     margin: auto;
-    margin-left: 35%;
+    margin-left: 30%;
     margin-top: 2%;
     margin-bottom: 50%;
     padding: 2%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); 
 }
 
 
@@ -48,13 +52,15 @@
 
 
 .btn-generar-qr{
-    width: 30%;
-    height: 10%;
+    width: 20%;
+    height: 5%;
     margin: auto;
     margin-left: 30%;
     margin-top:10%;
     margin-bottom: 30%;
-    background-color: rgb(106, 247, 106);
+    background-color: #1a1919;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); 
+    color: #FFFFFF;
     border: none;
     cursor: pointer;
 }
@@ -87,10 +93,23 @@
       }
       .div-qr{
         margin: auto;
-       
         margin-top: 10%;
         margin-bottom: 50%;
         padding: 2%;
     }
+    .titulo-principal-qr{
+       height:80px; 
+    }
 
+    .btn-generar-qr{
+    width: 20%;
+    height: 5%;
+    margin: auto;
+   margin-top: 0;
+    background-color: #1a1919;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); 
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+}
 }

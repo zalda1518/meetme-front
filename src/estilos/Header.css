@@ -1,11 +1,12 @@
 .header-padre{
-    background: linear-gradient(to right top, #1f1c2c, #928dab);
+    background-color: #262424;
     box-sizing: border-box;
     display: flex;
     width: 10%;
     min-height: 100%;
     padding: 5px;
     flex-direction: column;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 .header-padre-active{
     display: flex;
