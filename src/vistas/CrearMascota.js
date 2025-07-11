@@ -11,7 +11,6 @@ import menu from '../includes/menu.png';
 
 function CrearMascota() {
 
-   const { id } = useParams();
    const navigate = useNavigate();
    const [rol, setRol] = useState('');
    const [imagenURL, setImagenURL] = useState('');
@@ -26,18 +25,18 @@ function CrearMascota() {
    // para validar si existe user en sesion //
 
    //--------------------------------------------//
-   
 
+   useEffect(() => {
+      if (!token) {
+         alert('debes iniciar sesion primero');
+         navigate('/forbiden');
+         return;
+      }
+   }, [navigate])
 
 
    // para validar el rol del usuario //
    async function getRol() {
-       
-      if(!token){
-         alert('debes iniciar sesion primero');
-         navigate('/forbiden'); 
-         return;
-      }
 
       const res = await fetch('https://meetme-back-production.up.railway.app/getrol',      //https://meetme-back-production.up.railway.app/getrol
          {
@@ -51,12 +50,10 @@ function CrearMascota() {
       } else {
          const response = await res.json();
          const rol = response.resultados.rol;
-
-
-         /* if (rol === 'administrador') {
+         if (rol === 'administrador') {
             navigate('/registrosadmin');
             return;
-         } */
+         }
       }
    }
    getRol();
@@ -64,7 +61,7 @@ function CrearMascota() {
 
    //para crear los valores en un objeto //
    const [values, setValues] = useState({
-      id_mascota: id,
+      id_mascota: id_usuario,
       publicID: Math.floor(Math.random() * (10000 - 1)),
       nombres: "",
       apellidos: "",
@@ -143,7 +140,7 @@ function CrearMascota() {
                   Error();
                } else {
                   Success(values);
-                  navigate(`/registros/${id}`);
+                  navigate(`/registros`);
                }
             });
       }
@@ -153,7 +150,7 @@ function CrearMascota() {
       setEstilo(!estilo);
    }
    //---------------------------------------------------------//
-return;
+
    //inicia el renderizado jsx//
    return (
 

@@ -23,7 +23,7 @@ function Registros() {
          navigate('/forbiden');
          return;
       }
-   }, []);
+   }, [token,navigate]);
 
    async function getRol() {
 
@@ -76,7 +76,7 @@ function Registros() {
       }
       fetchData();
 
-   }, []);
+   }, [token,navigate]);
 
    //fucion para mostrar el menu responsive//
    function menuResponsive() {
@@ -93,7 +93,7 @@ function Registros() {
          {datos.length >= 1 ?
             <div className='div-padre-registros'>
                <div className='item1-titulo-principal-registros' onClick={menuResponsive} >
-                  <h2 className="h2-icono-registros"><img src={menu} className="icono-menu" />MEETME</h2>
+                  <h2 className="h2-icono-registros"><img src={menu} className="icono-menu" alt="not found"/>MEETME</h2>
                </div>
 
                {/*--------------------------------------------------------------------------------*/}
@@ -105,7 +105,7 @@ function Registros() {
 
                <div className="item2-registros">
                   <div className="div-imagen-registros">
-                     <img src={datos[0].foto_mascota} className="img-mascota-registros" />
+                     <img src={datos[0].foto_mascota} className="img-mascota-registros" alt="not found" />
                      <span className="titulos-dueño-registros" id="titulos-public-id"> {datos[0].nombre_mascota}</span>
                      <span className="titulos-dueño-registros" id="titulos-public-id">ID {datos[0].publicID}</span>
                   </div>

@@ -18,13 +18,13 @@ function CodigoQr() {
   const id_usuario = localStorage.getItem('id_usuario');
 
 
-   useEffect(() => {
-      if (!token) {
-         alert('debes iniciar sesion primero');
-         navigate('/forbiden');
-         return;
-      }
-   }, []);
+  useEffect(() => {
+    if (!token) {
+      alert('debes iniciar sesion primero');
+      navigate('/forbiden');
+      return;
+    }
+  }, [navigate]);
 
 
   // para validar el rol del usuario //
@@ -36,9 +36,9 @@ function CodigoQr() {
       });
 
     if (!res.ok) {
-         alert('debes iniciar sesion primero');
-         return navigate('/forbiden');
-         
+      alert('debes iniciar sesion primero');
+      return navigate('/forbiden');
+
     } else {
       const response = await res.json();
       const rol = response.resultados.rol;
@@ -68,7 +68,7 @@ function CodigoQr() {
           navigate(`/forbiden`)
         }
         const response = await res.json();
-       // console.log(response.resultados[0]);
+        // console.log(response.resultados[0]);
         setDatos(response.resultados);
 
       }
@@ -89,7 +89,7 @@ function CodigoQr() {
       return AlertaQR();
     }
     const PID = datos[0].publicID;
-    const valueCode = `https://meetme-back-production.up.railway.app/public/${PID}`;     //https://meetme-back-production.up.railway.app/publicIDMimascota/${PID}
+    const valueCode = `https://meetme-org.netlify.app/publicIDMimascota/${PID}`;     //https://meetme-org.netlify.app/publicIDMimascota/1650
     setQrGenerado(valueCode);
     QRGenerado();
 
@@ -102,8 +102,8 @@ function CodigoQr() {
 
   //-----------------------------------------------//
   return (
-    <> {datos.length >= 1 ? 
-     <div className="div-padre-qr">
+    <> {datos.length >= 1 ?
+      <div className="div-padre-qr">
         <div className='titulo-principal-qr' onClick={menuResponsive} >
           <h2 className="h2-qr"><img src={menu} className="icono-menu" />MEETME</h2>
         </div>
@@ -122,8 +122,11 @@ function CodigoQr() {
 
         </div> : <button onClick={generarQr} className="btn-generar-qr">Generar QR</button>}
 
-      </div> : <a href="/crear">registrar mascota</a> } 
-      
+      </div> : <div>
+        <span>aun no tienes mascotas registradas </span>
+        <a href="/crearMascota"> registrar mascota</a>
+      </div>}
+
     </>
   );
 }

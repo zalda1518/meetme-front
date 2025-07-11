@@ -27,7 +27,7 @@ function Perfil() {
          navigate('/forbiden');
          return;
       }
-   }, []);
+   }, [token,navigate]);
 
   // para validar el rol del usuario //
   async function getRol() {
@@ -85,7 +85,7 @@ function Perfil() {
     }
     fetchData();
 
-  }, []);
+  }, [navigate,token]);
   //----------------------------------------//
 
   //para actualizar la foto //
@@ -159,7 +159,7 @@ function Perfil() {
       {datos.nombres ?
         <div className='div-padre'>
           <div className='item1-titulo-principal' onClick={menuResponsive}>
-            <h2><img src={menu} className="icono-menu" />MEETME</h2>
+            <h2><img src={menu} className="icono-menu" alt="not found" />MEETME</h2>
           </div>
 
           {/*--------------------------------------------------------------------------------*/}
@@ -188,7 +188,7 @@ function Perfil() {
 
           <form className="item4">
             <h3 id="titulo-datos-dueño-perfil">ACTUALIZA LOS DATOS DE TU PERFIL</h3>
-            <div className="div-imagen"><img src={datos.foto_mascota} className="titulos-div2" id="img-mascota" /></div>
+            <div className="div-imagen"><img src={datos.foto_mascota} className="titulos-div2" id="img-mascota" alt="not found" /></div>
             <div className="div-inputs">
               <input className="titulos-div2" name="nombres" value={datos.nombres} onChange={handleChange} placeholder="Nombres" />
               <input className="titulos-div2" name="apellidos" value={datos.apellidos} onChange={handleChange} placeholder="Apellidos" />
@@ -208,7 +208,7 @@ function Perfil() {
 
         </div> : <div>
           <span>aun no tienes mascotas registradas </span>
-          <a href="/crear"> registrar mascota</a>
+          <a href="/crearMascota"> registrar mascota</a>
         </div>}
 
     </>

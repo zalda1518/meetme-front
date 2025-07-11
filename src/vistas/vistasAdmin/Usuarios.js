@@ -20,7 +20,7 @@ function Usuarios() {
 
    async function getRol() {
 
-      const res = await fetch('http://localhost:4000/getrol',
+      const res = await fetch('https://meetme-back-production.up.railway.app/getrol',
          {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
@@ -56,7 +56,7 @@ function Usuarios() {
 
          } else {
 
-            const res = await fetch('http://localhost:4000/usuarios',
+            const res = await fetch('https://meetme-back-production.up.railway.app/usuarios',  //https://meetme-back-production.up.railway.app/
                {
                   method: 'GET',
                   headers: { 'Content-Type': 'application/json', 'auth': token }
