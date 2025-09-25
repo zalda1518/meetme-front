@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { QRCodeCanvas } from 'qrcode.react';
-import '../estilos/CodigoQr.css';
+import styles from "../estilos/CodigoQr.module.css";
 import menu from '../includes/menu.png';
 import HeaderUsuario from './HeaderUsuario.js';
 import MenuResponsiveUsuario from './MenuResponsiveUsuario.js';
@@ -95,6 +95,12 @@ function CodigoQr() {
 
   }
 
+   /* cerrar animacion cuando la respuesta sea exitosa */
+   if (datos.length) {
+      document.getElementById('preloader').style.display = 'none';
+   }
+   /* cerrar animacion cuando la respuesta sea exitosa */
+
   //fucion para mostrar el menu responsive//
   function menuResponsive() {
     setEstilo(!estilo);
@@ -102,30 +108,42 @@ function CodigoQr() {
 
   //-----------------------------------------------//
   return (
-    <> {datos.length >= 1 ?
-      <div className="div-padre-qr">
-        <div className='titulo-principal-qr' onClick={menuResponsive} >
-          <h2 className="h2-qr"><img src={menu} className="icono-menu" />MEETME</h2>
-        </div>
+    <>
+      {/*   <!-- Preloader --> */}
+      <div id="preloader" className={styles['preloader']}>
+        <div className={styles["spinner"]}></div>
+        <h3> Cargando...</h3>
+      </div>
+      {/*   <!-- Preloader --> */}
+
+      {datos.length >= 1 ?
+        <div className={styles["div-padre-qr"]}>
+
+          <div className={styles['titulo-principal-qr']} onClick={menuResponsive} >
+            <h2 className={styles["h2-qr"]}>MEETME</h2>
+            <img src={menu} className={styles["icono-menu"]} alt="not found" />
+          </div>
 
 
-        <HeaderUsuario />                              {/*el menu solo para version de escritorio*/}
-        <div className={estilo ? 'menu-hamburgesa-activo' : 'menu-hamburgesa-oculto'} onClick={menuResponsive}>
-          <MenuResponsiveUsuario />           {/*el menu solo para version de movil*/}
-        </div>
+          {/*--------------------------------------------------------------------------------*/}
+          <HeaderUsuario /> {/*el menu solo para version de escritorio*/}
+          <div className={estilo ? styles['menu-hamburgesa-activo'] : styles['menu-hamburgesa-oculto']} onClick={menuResponsive}>
+            {<MenuResponsiveUsuario />}     {/*el menu solo para version de movil*/}
+          </div>
+          {/*--------------------------------------------------------------------------------*/}
 
 
 
-        {qrGenerado ? <div className="div-qr">
-          <QRCodeCanvas value={qrGenerado} size={256} className="qr" />
-          <h3 className="titulo-qr">TU CODIGO QR</h3>
+          {qrGenerado ? <div className={styles["div-qr"]}>
+            <QRCodeCanvas value={qrGenerado} size={256} className={styles["qr"]} />
+            <h3 className={styles["titulo-qr"]}>TU CODIGO QR</h3>
 
-        </div> : <button onClick={generarQr} className="btn-generar-qr">Generar QR</button>}
+          </div> : <button onClick={generarQr} className={styles["btn-generar-qr"]}>Generar QR</button>}
 
-      </div> : <div>
-        <span>aun no tienes mascotas registradas </span>
-        <a href="/crearMascota"> registrar mascota</a>
-      </div>}
+        </div> : <div>
+          <span>aun no tienes mascotas registradas </span>
+          <a href="/crearMascota"> registrar mascota</a>
+        </div>}
 
     </>
   );

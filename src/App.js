@@ -15,7 +15,8 @@ import Registros from './vistas/Registros';
 import Login from './vistas/Login';
 import RecuperarClave from './vistas/RecuperarClave';
  import Perfil from './vistas/Perfil';
-/* import CodigoQr from './vistas/CodigoQr';
+ import CodigoQr from './vistas/CodigoQr';
+/* 
 import ValidarRol from './controlador/Controlador';
 import CrearMascota from './vistas/CrearMascota'; */
 
@@ -44,7 +45,8 @@ function App() {
           <Route path='/registros' element={<Registros />} />
           <Route path='/recuperarclave' element={<RecuperarClave />} />
            <Route path='/perfil' element={<Perfil />}/>
-         {/*  <Route path='/codigo' element={<CodigoQr />}/>
+           <Route path='/codigo' element={<CodigoQr />}/>
+         {/*  
           <Route path='/validarRol' element={<ValidarRol/>}/>
           <Route path='/crearMascota' element={<CrearMascota  />}/>
            */}

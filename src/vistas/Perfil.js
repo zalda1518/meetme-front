@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "../estilos/Perfil.module.css";
 import menu from '../includes/menu.png';
 import HeaderUsuario from "./HeaderUsuario.js";
-import MenuResponsiveUsuario from '../temp/MenuResponsiveUsuario.js'
+import MenuResponsiveUsuario from './MenuResponsiveUsuario.js'
 import { Warning, Error, Success, Cargando, Cargada, ErrorCargaImagen, SuccessUpdate } from '../includes/Alertas.js';
 
 function Perfil() {

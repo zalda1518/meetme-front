@@ -1,15 +1,17 @@
-import  styles from '../estilos/Login.module.css';
+import styles from '../estilos/Login.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BuscarID from './BuscarID.js';
 import { Warning, ErrorUsuario, Bienvenido } from '../includes/Alertas.js';
 import ValidarRol from '../controlador/Controlador.js';
 import logometme from '../includes/logo-meetme.png';
+import show from '../includes/mostrar-password.png';
 
 
 function Login() {               //inicia el componente//
 
    const navigate = new useNavigate();
+   const[isPass, setIsPass] = useState(true);
    const [data, setData] = useState({});
    const [user, setUser] = useState({
       correo: "",
@@ -22,7 +24,7 @@ function Login() {               //inicia el componente//
       setUser({ ...user, [name]: value });
    }
 
-//----------------------------------------------------------------------------------------------------
+   //----------------------------------------------------------------------------------------------------
    async function ingresar(e) {
       e.preventDefault();
       if (user.correo === '' || user.clave === '') {
@@ -51,14 +53,28 @@ function Login() {               //inicia el componente//
       }
 
    }
+   /* mostrar contraseña */
+
+
+
+   /* mostrar contraseña */
    //------------------------------------------------------------------------------------------//
    return (
       <div className={styles['login-padre']}>
          <div className={styles['login-box-1']}>
             <h2 className={styles['login-box-titulo']}>Iniciar sesion</h2>
             <p className={styles['login-box-parrafo']}>Ingresa a Meetme</p>
+
             <input type='email' placeholder="Correo" name='correo' className={styles['login-box-input']} onChange={handleChange} />
-            <input type='text' placeholder="Contraseña" name='clave' className={styles['login-box-input']} onChange={handleChange} />
+
+            <div className={styles['div-input-password']} >
+               <input type={isPass ? 'password' : 'text'} placeholder="Contraseña" name='clave' className={styles['login-box-input-password']} onChange={handleChange} />
+               <button>
+                  <img src={show} className={styles['show']} onClick={()=> setIsPass(!isPass)} />
+               </button>
+            </div>
+
+
             <button className={styles['login-box-btn-ingresar']} type='button' onClick={ingresar}>Ingresar</button>
 
 
@@ -72,7 +88,7 @@ function Login() {               //inicia el componente//
          <div className={styles['login-box-2']}>
             <h3 className={styles['login-box-titulo-meetme']}>Conoce diferentes mascotas, y ayudalas a encontrar su hogar</h3>
             <BuscarID />
-           
+
             <div className={styles['login-box-logo']}>
                <img src={logometme} />
             </div>

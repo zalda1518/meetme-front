@@ -32,7 +32,10 @@ function HeaderUsuario() {
       <img src={qr} />
        <span>Codigo QR</span> 
       </a>
-      <a href='/' className={styles['links']} onClick={CerrarSesion}><img src={salir} />Salir</a>
+      <a href='/' className={styles['links']} onClick={CerrarSesion}>
+      <img src={salir} />
+      <span>Salir</span> 
+      </a>
     </div>
   );
 }

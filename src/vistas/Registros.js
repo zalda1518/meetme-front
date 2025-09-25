@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "../estilos/Registros.module.css";
 import HeaderUsuario from "./HeaderUsuario.js";
 import menu from '../includes/menu.png';
-import MenuResponsiveUsuario from "../temp/MenuResponsiveUsuario";
+import MenuResponsiveUsuario from "./MenuResponsiveUsuario";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 
 //------------------------------------------------------------------//
