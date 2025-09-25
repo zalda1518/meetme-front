@@ -6,7 +6,7 @@
 body {
   margin: 0;
    font-family: 'Poppins', sans-serif;
-   background-color: #4a4848;
+   background-color: #a09a9a;
     color: #E0E0E0;
      animation: anim 0.8s ease-in forwards;
 }
@@ -18,21 +18,29 @@ body {
 
 .login-padre {
   width: 100%;
-  min-height: 500px;
+  min-height: 100vh;
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
   padding-top: 5%;
+  background-color: rgb(136, 153, 153);
 }
 
+/* -------------------------------------- */
 .login-box-1 {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 1%;
+  padding-bottom: 5%;
+  padding-inline: 5%;
+  margin: auto;
+  justify-content: center;
+  flex-direction: column;
   backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(141, 131, 131, 0.08);
   border-radius: 20px;
-  padding: 40px 30px;
-  width: 100%;
-  margin-left: 25%;
-  max-width: 400px;
+  width: 40%;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   color: #fff;
   text-align: center;
@@ -122,19 +130,25 @@ body {
 
 /*-----------------------------------------*/
 .login-box-2 {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 40%;
+  margin: auto;
+  padding: 1%;
+  padding-inline: 5%;
+  justify-content: center;
+  flex-direction: column;
   backdrop-filter: blur(12px);
   background: rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 40px 30px;
-  width: 100%;
- margin-left: 5%;
-  max-width: 400px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   color: #fff;
-  text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.2);
   animation: fadeIn 0.7s ease;
 }
+
+/* componente buscar id */
 
 .login-box-titulo-meetme {
   margin-bottom: 10px;
@@ -181,7 +195,9 @@ body {
 }
 
 .login-box-logo{
-  margin-top: 15%;
+  margin: auto;
+  margin-top: 10%;
+
 }
 
 /* Animación */
@@ -196,15 +212,30 @@ body {
   }
 }
 
+
+
+
 /* Responsive: pantallas pequeñas */
 @media screen and (max-width: 760px) {
+
+  .login-padre {
+    flex-direction: column;
+    padding: 10px;
+    padding-top: 5%;
+  }
+
   .login-box-1{
     margin:auto;
+    width: 100%;
+    border: none;
+    box-shadow: none;
   }
   .login-box-2{
     margin:auto;
+    width: 100%;
     margin-top: 2%;
-    
+    border: none;
+    box-shadow: none;
   }
 
   .login-box {
@@ -222,28 +253,4 @@ body {
   }
 }
 
-/* Responsive: pantallas pequeñas */
-@media screen and (max-width: 1024px) {
-  .login-box-1{
-    margin:auto;
-  }
-  .login-box-2{
-    margin:auto;
-    margin-top: 2%;
-    
-  }
 
-  .login-box {
-    padding: 30px 20px;
-  }
-
-  .login-box h2 {
-    font-size: 1.5rem;
-  }
-
-  .extra-links {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-}

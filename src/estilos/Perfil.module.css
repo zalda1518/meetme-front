@@ -1,0 +1,241 @@
+.div-padre-perfil {
+   display: flex;
+   box-sizing: border-box;
+   flex-wrap: wrap;
+   width: 100%;
+   min-height: 100vh;
+   background-color: rgb(193, 226, 226);
+   margin: auto;
+   scroll-behavior: smooth;
+   background:
+      linear-gradient(rgb(253, 255, 255), rgba(30, 30, 30, 0.6)),
+      /* capa de color */
+      url("../includes/fondo.jpg");
+   background-attachment: fixed;
+   background-size: cover;
+}
+
+/* preloader */
+.preloader {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100vh;
+   background: #fff;
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   z-index: 9999;
+   margin: auto;
+}
+
+#preloader {
+   display: flex;
+}
+
+/* Spinner */
+.spinner {
+   display: flex;
+   width: 50px;
+   height: 50px;
+   border: 5px solid #ddd;
+   border-top: 5px solid #3498db;
+   border-radius: 50%;
+   animation: girar 1s linear infinite;
+   background-color: #b6c2bc;
+}
+
+.preloader h3 {
+   font-family: Arial, sans-serif;
+   color: #262424;
+}
+
+@keyframes girar {
+   0% {
+      transform: rotate(0deg);
+   }
+
+   100% {
+      transform: rotate(360deg);
+   }
+}
+
+#preloader.fade-out {
+   opacity: 0;
+   transition: opacity 0.6s ease;
+   pointer-events: none;
+}
+
+/* preloader */
+
+.icono-menu {
+   display: none;
+}
+
+.item1-titulo-principal-perfil {
+   width: 100%;
+   background-color: aqua;
+   color: #302d2d;
+   padding-left: 2%;
+}
+
+.item1-titulo-principal-perfil h2 {
+   display: flex;
+   margin: auto;
+   justify-content: center;
+   padding: 1%;
+}
+
+/* mostrar menu responsive */
+.menu-hamburgesa-oculto {
+   display: none;
+   width: 100%;
+   height: 100%;
+   background-color: rgb(17, 17, 16);
+   position: absolute;
+}
+
+.menu-hamburgesa-activo {
+   display: flex;
+   width: 100%;
+   height: 100%;
+   background-color: rgb(17, 17, 16);
+   position: fixed;
+   top: 0;
+   left: 0;
+   animation: fadeIn 0.3s ease-in-out;
+   z-index: 1000;
+}
+
+/* mostrar menu responsive */
+.item2 {
+   display: flex;
+   flex-wrap: wrap;
+   width: 94%;
+   padding: 1%;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   box-sizing: border-box;
+   margin: auto;
+}
+
+.item2 h3 {
+   display: flex;
+   margin: auto;
+   justify-content: center;
+   padding: 1%;
+   color: #262424;
+}
+
+
+.div-imagen-perfil {
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column;
+   box-sizing: border-box;
+   margin: auto;
+   margin-top: 0;
+   width: 80%;
+   min-height: 300px;
+   padding: 1%;
+   padding-bottom: 1%;
+   place-content: center;
+}
+
+.div-foto-perfil {
+   max-height: 350px;
+   border-radius: 80px 80px 80px 80px;
+   display: flex;
+   margin: auto;
+   margin-top: 1%;
+   margin-bottom: 1%;
+   object-fit: cover;
+   padding: 2px;
+   overflow: hidden;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.hijo-item2 {
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column;
+   width: 100%;
+   padding: 1%;
+   gap: 2%;
+   justify-content: center;
+   align-items: center;
+   box-sizing: border-box;
+   margin-bottom: 2%;
+}
+
+.titulos-perfil-input {
+   display: flex;
+   flex-wrap: wrap;
+   margin: auto;
+   margin: 1%;
+   justify-content: center;
+   width: 40%;
+   padding: 1%;
+   color: #262424;
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+   background: rgba(84, 70, 70, 0.2);
+   /* transparencia */
+   backdrop-filter: blur(20px);
+   /* desenfoque */
+   border: none;
+   border-radius:10px ;
+}
+
+.titulos-perfil-input:hover {
+   background-color: #8d9e8b;
+   color: white;
+   border-radius: 5px;
+   transition: 0.3s;
+}
+
+
+/*-----------------------------------------------------------*/
+
+/* responsive desing */
+
+@media screen and (max-width:768px) {
+
+   .div-imagen-registros {
+      width: 100%;
+   }
+
+   .img-mascota-registros {
+      min-height: 350px;
+   }
+
+
+   .icono-menu {
+      display: flex;
+      width: 10%;
+      padding: 3px;
+      margin-top: 3px;
+   }
+
+   .icono-menu:hover {
+      background-color: #5a5151;
+      color: white;
+      border-radius: 5px;
+   }
+
+   .titulos-perfil-input {
+      width: 90%;
+      padding: 3%;
+   }
+
+
+
+
+
+
+
+}

@@ -2,8 +2,8 @@ import '../estilos/Crear.css';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Warning, Error, Success, Cargando, Cargada, ErrorCargaImagen } from '../includes/Alertas.js';
-import HeaderUsuario from '../vistas/HeaderUsuario.js';
-import MenuResponsiveUsuario from '../vistas/MenuResponsiveUsuario.js';
+import HeaderUsuario from './HeaderUsuario.js';
+import MenuResponsiveUsuario from './MenuResponsiveUsuario.js';
 import menu from '../includes/menu.png';
 
 

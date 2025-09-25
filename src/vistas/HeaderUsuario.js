@@ -1,8 +1,15 @@
-import '../estilos/Header.css';
+import styles from "../estilos/HeaderUsuario.module.css";
+import huella from "../includes/huella.png";
+import perfil from "../includes/perfil.png";
+import qr from "../includes/qr.png";
+import salir from "../includes/salir.png";
+
+
+
 
 
 function HeaderUsuario() {
-  
+
 
   function CerrarSesion() {
     localStorage.removeItem('token');
@@ -10,11 +17,22 @@ function HeaderUsuario() {
   }
 
   return (
-    <div className='header-padre' >
-      <a href={`/registros`} className='links'>MI MASCOTA</a>
-      <a href={`/perfil`} className='links'>PERFIL</a>
-      <a href={`/codigo`} className='links'>CODIGO QR</a>
-      <a href='/' className='links' onClick={CerrarSesion}>SALIR</a>
+    <div className={styles['header-padre']} >
+
+      <a href={`/registros`} className={styles['links']}>
+        <img src={huella} />
+        <span>Mi Mascota</span>
+      </a>
+
+      <a href={`/perfil`} className={styles['links']}>
+      <img src={perfil} />
+       <span>Perfil</span> 
+      </a>
+      <a href={`/codigo`} className={styles['links']}>
+      <img src={qr} />
+       <span>Codigo QR</span> 
+      </a>
+      <a href='/' className={styles['links']} onClick={CerrarSesion}><img src={salir} />Salir</a>
     </div>
   );
 }

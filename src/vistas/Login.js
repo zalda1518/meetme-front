@@ -1,4 +1,4 @@
-import '../estilos/Login.css';
+import  styles from '../estilos/Login.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BuscarID from './BuscarID.js';
@@ -53,27 +53,27 @@ function Login() {               //inicia el componente//
    }
    //------------------------------------------------------------------------------------------//
    return (
-      <div className='login-padre'>
-         <div className='login-box-1'>
-            <h2 className='login-box-titulo'>Iniciar sesion</h2>
-            <p className='login-box-parrafo'>Ingresa a Meetme</p>
-            <input type='email' placeholder="Correo" name='correo' className='login-box-input' onChange={handleChange} />
-            <input type='text' placeholder="Contraseña" name='clave' className='login-box-input' onChange={handleChange} />
-            <button className='login-box-btn-ingresar' type='button' onClick={ingresar}>Ingresar</button>
+      <div className={styles['login-padre']}>
+         <div className={styles['login-box-1']}>
+            <h2 className={styles['login-box-titulo']}>Iniciar sesion</h2>
+            <p className={styles['login-box-parrafo']}>Ingresa a Meetme</p>
+            <input type='email' placeholder="Correo" name='correo' className={styles['login-box-input']} onChange={handleChange} />
+            <input type='text' placeholder="Contraseña" name='clave' className={styles['login-box-input']} onChange={handleChange} />
+            <button className={styles['login-box-btn-ingresar']} type='button' onClick={ingresar}>Ingresar</button>
 
 
 
-            <div className="extra-links">
-               <a href="#" className='login-box-olvidar-clave'>¿Olvidaste tu contraseña?</a>
-               <a href="#" className='login-box-crear-cuenta'>Crear cuenta</a>
+            <div className={styles["extra-links"]}>
+               <a href="recuperarclave" className={styles['login-box-olvidar-clave']}>¿Olvidaste tu contraseña?</a>
+               {/* <a href="#" className={styles['login-box-crear-cuenta']}>Crear cuenta</a> */}
             </div>
          </div>
 
-         <div className='login-box-2'>
-            <h3 className='login-box-titulo-meetme'>Conoce diferentes mascotas, y ayudalas a encontrar su hogar</h3>
+         <div className={styles['login-box-2']}>
+            <h3 className={styles['login-box-titulo-meetme']}>Conoce diferentes mascotas, y ayudalas a encontrar su hogar</h3>
             <BuscarID />
            
-            <div className='login-box-logo'>
+            <div className={styles['login-box-logo']}>
                <img src={logometme} />
             </div>
          </div>

@@ -1,0 +1,52 @@
+.header-padre {
+    color: white;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    width: 5%;
+    padding: 5px;
+    flex-direction: column;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: aqua;
+}
+
+.header-padre-active {
+    display: flex;
+}
+.links img {
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    margin-bottom: 10px;
+    
+}
+
+.links {
+    width: 100%;
+    text-decoration: none;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: #242020;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 15px;
+    margin: auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.links:hover {
+    background-color: rgb(211, 220, 228);
+
+}
+
+@media screen and (max-width:768px) {
+    .header-padre {
+        display: none;
+    }
+}

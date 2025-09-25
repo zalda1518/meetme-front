@@ -1,4 +1,4 @@
-import '../estilos/MenuResponsive.css';
+/* import '../estilos/MenuResponsive.css'; */
 
 
 function MenuResponsiveUsuario() {

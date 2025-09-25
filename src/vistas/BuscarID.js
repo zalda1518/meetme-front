@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ErrorQR } from '../includes/Alertas.js';
+import  styles from '../estilos/Login.module.css';
+
 
 
 function BuscarID() {
@@ -27,9 +29,9 @@ function BuscarID() {
 
 
    return (
-      <div className="div-buscar-id">
-         <input type="number" name="buscarID" placeholder="Ingresa el ID" className="login-box-input-buscar" onChange={handleChange} />
-         <button className="login-box-btn-buscar" onClick={Buscar}>Buscar por ID</button>
+      <div className={styles["div-buscar-id"]}>
+         <input type="number" name="buscarID" placeholder="Ingresa el ID" className={styles["login-box-input-buscar"]} onChange={handleChange} />
+         <button className={styles["login-box-btn-buscar"]} onClick={Buscar}>Buscar por ID</button>
       </div>
    );
 }
