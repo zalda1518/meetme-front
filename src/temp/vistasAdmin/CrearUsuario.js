@@ -27,15 +27,15 @@ function CrearUsuario() {
 
    async function getRol() {
 
-      const res = await fetch('http://localhost:4000/getrol',
+      const res = await fetch('https://meetme-back-production.up.railway.app/getrol',
          {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
          }
       );
       if (!res.ok) {
-           alert('debes iniciar sesion primero y ser administrador');
-           return navigate('/forbiden');
+         alert('debes iniciar sesion primero y ser administrador');
+         return navigate('/forbiden');
       } else {
          const response = await res.json();
          const rol = response.resultados.rol;
@@ -62,17 +62,20 @@ function CrearUsuario() {
    //---------------------------------------------------------------------------------------------
    async function enviarDatos(e) {
 
+
+
       e.preventDefault();
       if (user.correo === '' || user.clave === '' || user.rol === '') {
          return alert('campos vacios');
       }
 
+
       try {
 
-         const res = await fetch('http://localhost:4000/crearUsuario',
+         const res = await fetch('https://meetme-back-production.up.railway.app/crearUsuario',
             {
                method: 'POST',
-               headers: { 'Content-Type': 'application/json' },
+               headers: { 'Content-Type': 'application/json','auth':token, 'id_usuario':id_usuario },
                body: JSON.stringify(user)
             });
          if (!res.ok) {
@@ -80,8 +83,8 @@ function CrearUsuario() {
 
          }
 
-           alert('usuario creado')
-           console.log(user);
+         alert('usuario creado')
+         console.log(user);
 
       } catch (error) {
          alert('error')

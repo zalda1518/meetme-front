@@ -1,0 +1,267 @@
+.div-padre-registros {
+   display: flex;
+   box-sizing: border-box;
+   flex-wrap: wrap;
+   width: 100%;
+   background-color: #F2F4F7;
+   margin: 0;
+   font-family: Arial, Helvetica;
+}
+
+.header-padre{
+   background-color: #585e68;
+    box-sizing: border-box;
+    display: flex;
+    width: 10%;
+    height: 97vh;
+    padding: 5px;
+    flex-direction: column;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+.header-padre-active{
+    display: flex;
+}
+ .links{
+    text-decoration: none;
+    padding: 3%;
+    margin: 2px;
+    margin-top: 1%;
+    color:rgb(24, 23, 23);
+    background: rgba(255, 255, 255, 0.08);
+    
+    border-radius: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.links:hover{
+    background-color: rgb(211, 220, 228);
+
+}
+
+.icono-menu {
+   display: none;
+}
+
+.item1-titulo-principal-registros {
+   width: 100%;
+   background-color: #B0B3B8;
+   color: #3d3d3d;
+   padding-left: 2%;
+}
+
+/*--------------------------------------------*/
+.menu-hamburgesa-oculto {
+   display: none;
+   width: 100%;
+   height: 100%;
+   background-color: rgb(17, 17, 16);
+   position: absolute;
+}
+
+/* ----------------------------animacion carga */
+ /* preloader */
+ #preloader {
+   position: fixed;
+   width: 100%;
+   height: 100vh;
+   background: #fff;
+   z-index: 9999;
+   margin: auto;
+   place-content: center;
+ }
+
+ /* Spinner */
+ .spinner {
+   display: flex;
+   margin: auto;
+   width: 50px;
+   height: 50px;
+   border: 5px solid #ddd;
+   border-top: 5px solid #3498db;
+   border-radius: 50%;
+   animation: girar 1s linear infinite;
+ }
+.titulo-cargando{
+   display: flex;
+   justify-content: center;
+   margin-top: 10px;
+   font-family: Arial, Helvetica, sans-serif;
+   color: #5f6061;
+}
+
+ @keyframes girar {
+   0% {
+     transform: rotate(0deg);
+   }
+
+   100% {
+     transform: rotate(360deg);
+   }
+ }
+
+ #preloader.fade-out {
+   opacity: 0;
+   transition: opacity 0.6s ease;
+   pointer-events: none;
+ }
+
+ /* preloader */
+/* ----------------------------animacion carga */
+
+.item2-registros {
+   box-sizing: border-box;
+   display: flex;
+   flex-wrap: wrap;
+   width: 90%;
+   padding: 1px;
+   gap: 2%;
+}
+
+.div-imagen-registros {
+   width: 50%;
+   padding: 1%;
+   place-items: center;
+   box-shadow: 5px 0px 8px rgba(0, 0, 0, 0.6);
+}
+
+.item3-registros {
+   padding: 1%;
+   padding-top: 10%;
+   width: 48%;
+   place-items: center;
+}
+
+
+.titulos-dueño-registros {
+   display: flex;
+   justify-content: center;
+   width: 60%;
+   margin: 5px;
+   padding: 1%;
+   background-color: #D0D3D7;
+   border: #313131;
+   color: #161616;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+
+.img-mascota-registros {
+   width: 50%;
+   height: 350px;
+   border-radius: 50%;
+   margin-left: 20%;
+   display: block;
+   margin: 0 auto;
+
+}
+
+
+
+/*--------------------------------------------*/
+.item5-registros {
+   width: 100%;
+   padding: 1%;
+}
+
+.titulo-datos-mascota-registros {
+   color: #5f6061;
+   font-weight: 700;
+   margin-left: 30%;
+
+}
+
+.titulo-datos-dueño-registros {
+   color: #5f6061;
+   font-weight: 700;
+   margin-left: 30%;
+
+}
+
+/*-----------------------------------------------------------*/
+/* responsive desing */
+
+@media screen and (max-width:1024px) {
+   .header-padre {
+      display: none;
+   }
+
+   .div-imagen-registros {
+      padding-bottom: 10%;
+   }
+
+   .item3-registros {
+      padding-bottom: 10%;
+   }
+
+   .icono-menu {
+      display: flex;
+      width: 10%;
+      padding: 3px;
+      margin-top: 3px;
+   }
+
+   .icono-menu:hover {
+      color: white;
+      border-radius: 5px;
+   }
+
+   .menu-hamburgesa-activo {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(17, 17, 16);
+      position: fixed;
+      top: 0;
+      left: 0;
+      animation: fadeIn 0.3s ease-in-out;
+   }
+
+   @keyframes fadeIn {
+      from {
+         opacity: 0;
+      }
+
+      to {
+         opacity: 1;
+      }
+   }
+
+   .item2-registros {
+      width: 100%;
+   }
+
+   .div-imagen-registros {
+      width: 100%;
+   }
+
+   .img-mascota-registros {
+      margin: 10% auto 0 auto;
+      height: 30vh;
+   }
+
+   .item3-registros {
+      width: 100%;
+
+   }
+
+   .titulo-datos-mascota-registros {
+      padding-left: 1%;
+      width: 85%;
+      text-align: center;
+      color: #2c2c2c;
+   }
+
+   .titulo-datos-dueño-registros {
+      width: 85%;
+      text-align: center;
+
+   }
+
+   .titulos-dueño-registros {
+      width: 80%;
+      padding: 2%;
+
+   }
+
+
+
+}

@@ -13,13 +13,20 @@ function RegistrosAdmin() {
 
    const token = localStorage.getItem('token');
    const id_usuario = localStorage.getItem('id_usuario');
-
+   
+   useEffect(() => {
+      if (!token) {
+         alert('debes iniciar sesion primero');
+         navigate('/forbiden');
+         return;
+      }
+   }, [token,navigate]);
 
    //para validar el rol del usuario//
 
    async function getRol() {
 
-      const res = await fetch('http://localhost:4000/getrol',
+      const res = await fetch('https://meetme-back-production.up.railway.app/getrol',
          {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
@@ -54,7 +61,7 @@ function RegistrosAdmin() {
 
          } else {
 
-            const res = await fetch('http://localhost:4000/registros',
+            const res = await fetch('https://meetme-back-production.up.railway.app/registros',
                {
                   method: 'GET',
                   headers: { 'Content-Type': 'application/json', 'auth': token }
@@ -72,7 +79,7 @@ function RegistrosAdmin() {
       }
       fetchData();
 
-   }, []);
+   }, [navigate,token]);
 
 
 

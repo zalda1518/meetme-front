@@ -1,11 +1,12 @@
 .header-padre{
-    background-color:white;
+    background-color: #262424;
     box-sizing: border-box;
     display: flex;
     width: 10%;
     min-height: 100%;
     padding: 5px;
     flex-direction: column;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 .header-padre-active{
     display: flex;
@@ -15,8 +16,9 @@
     padding: 3%;
     margin: 2px;
     margin-top: 1%;
-    color:rgb(15, 15, 15);
-    background-color: rgb(242, 244, 247);
+    color:rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0.08);
+    
     border-radius: 2px;
     font-family: Arial, Helvetica, sans-serif;
 }

@@ -1,4 +1,5 @@
-import '../estilos/MenuResponsive.css';
+import styles from "../estilos/MenuResponsive.module.css";
+
 
 
 function MenuResponsiveUsuario() {
@@ -9,11 +10,11 @@ function MenuResponsiveUsuario() {
   }
 
   return (
-    <div className='padre-menu-responsive' >
-      <a href={`/registros`} className='links-responsive'>MI MASCOTA</a>
-      <a href={`/perfil`} className='links-responsive'>PERFIL</a>
-      <a href={`/codigo`} className='links-responsive'>CODIGO QR</a>
-      <a href='/' className='links-responsive' onClick={CerrarSesion}>SALIR</a>
+    <div className={styles['padre-menu-responsive']} >
+      <a href={`/registros`} className={styles['links-responsive']}>MI MASCOTA</a>
+      <a href={`/perfil`} className={styles['links-responsive']}>PERFIL</a>
+      <a href={`/codigo`} className={styles['links-responsive']}>CODIGO QR</a>
+      <a href='/' className={styles['links-responsive']} onClick={CerrarSesion}>SALIR</a>
     </div>
   );
 }

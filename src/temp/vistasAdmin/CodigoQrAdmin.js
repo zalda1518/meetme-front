@@ -18,10 +18,17 @@ function CodigoQrAdmin() {
   const token = localStorage.getItem('token');
   const id_usuario = localStorage.getItem('id_usuario');
 
+    useEffect(() => {
+      if (!token) {
+         alert('debes iniciar sesion primero');
+         navigate('/forbiden');
+         return;
+      }
+   }, [navigate]);
 
   // para validar el rol del usuario //
   async function getRol() {
-    const res = await fetch('http://localhost:4000/getrol',            //https://meetme-production.up.railway.app/getrol
+    const res = await fetch('https://meetme-back-production.up.railway.app/getrol',            //https://meetme-production.up.railway.app/getrol
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
@@ -33,7 +40,9 @@ function CodigoQrAdmin() {
     } else {
       const response = await res.json();
       const rol = response.resultados.rol;
+      
       if (rol !== 'administrador') {
+         alert('no eres admin')
          navigate('/codigo');
         return;
       }
@@ -53,7 +62,7 @@ function CodigoQrAdmin() {
       }
 
       try {
-        const res = await fetch(`http://localhost:4000/buscar`,
+        const res = await fetch(`https://meetme-back-production.up.railway.app/buscar`,
           {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario }
@@ -84,7 +93,7 @@ function CodigoQrAdmin() {
       return AlertaQR();
     }
     const PID = datos.publicID;
-    const valueCode = `http://localhost:4000/publicIDMimascota/${PID}`;     //https://meetmeio.netlify.app/publicIDMimascota/${PID}
+    const valueCode = `https://meetme-org.netlify.app/publicIDMimascota/${PID}`;     //https://meetmeio.netlify.app/publicIDMimascota/${PID}
     setQrGenerado(valueCode);
     QRGenerado();
 

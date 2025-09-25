@@ -1,6 +1,6 @@
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../estilos/Perfil.css';
+import styles from "../estilos/Perfil.module.css";
 import menu from '../includes/menu.png';
 import HeaderUsuario from "./HeaderUsuario.js";
 import MenuResponsiveUsuario from './MenuResponsiveUsuario.js'
@@ -21,11 +21,18 @@ function Perfil() {
   const token = localStorage.getItem('token');
   const id_usuario = localStorage.getItem('id_usuario');
 
+  useEffect(() => {
+    if (!token) {
+      alert('debes iniciar sesion primero');
+      navigate('/forbiden');
+      return;
+    }
+  }, [token, navigate]);
 
   // para validar el rol del usuario //
   async function getRol() {
 
-    const res = await fetch('http://localhost:4000/getrol',
+    const res = await fetch('https://meetme-back-production.up.railway.app/getrol', //https://meetme-back-production.up.railway.app/getrol
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
@@ -33,8 +40,8 @@ function Perfil() {
     );
     if (!res.ok) {
       alert('debes iniciar sesion primero');
-         return navigate('/forbiden');
-        
+      return navigate('/forbiden');
+
     } else {
       const response = await res.json();
       const rol = response.resultados.rol;
@@ -48,20 +55,17 @@ function Perfil() {
     }
 
   }
+
   getRol();
 
   // para validar si existe user en sesion //
   useEffect(() => {
 
+
     async function fetchData() {
 
-      if (!token) {
-        navigate('/')
-        return;
-      }
-
       try {
-        const res = await fetch(`http://localhost:4000/buscar`,
+        const res = await fetch(`https://meetme-back-production.up.railway.app/buscar`,  //https://meetme-back-production.up.railway.app/buscar
           {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario }
@@ -81,7 +85,7 @@ function Perfil() {
     }
     fetchData();
 
-  }, []);
+  }, [navigate, token]);
   //----------------------------------------//
 
   //para actualizar la foto //
@@ -127,7 +131,7 @@ function Perfil() {
   async function Update(e) {
 
     e.preventDefault();
-    const res = await fetch('http://localhost:4000/actualizar',         //  https://meetme-production.up.railway.app/actualizar
+    const res = await fetch('https://meetme-back-production.up.railway.app/actualizar',   //  https://meetme-back-production.up.railway.app/actualizar
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -140,6 +144,12 @@ function Perfil() {
     }
   }
 
+  /* cerrar animacion cuando la respuesta sea exitosa */
+  if (datos.nombres) {
+    document.getElementById('preloader').style.display = 'none';
+  }
+  /* cerrar animacion cuando la respuesta sea exitosa */
+
 
   //fucion para mostrar el menu responsive//
   function menuResponsive() {
@@ -150,61 +160,55 @@ function Perfil() {
   //--------------------------------------------------------------------//
   return (
     <>
-      {loading ? Cargando() : false}
+      {/*   <!-- Preloader --> */}
+      <div id="preloader" className={styles['preloader']}>
+        <div className={styles["spinner"]}></div>
+        <h3> Cargando...</h3>
+      </div>
+      {/*   <!-- Preloader --> */}
+
+      {loading ? Cargando() : false} {/* efecto cargando para subir la imagen */}
 
       {datos.nombres ?
-        <div className='div-padre'>
-          <div className='item1-titulo-principal' onClick={menuResponsive}>
-            <h2><img src={menu} className="icono-menu" />MEETME</h2>
+        <div className={styles['div-padre-perfil']}>
+          <div className={styles['item1-titulo-principal-perfil']} onClick={menuResponsive}>
+            <h2 className={styles["h2-icono-registros"]}>MEETME</h2>
+            <img src={menu} className={styles["icono-menu"]} alt="not found" />
           </div>
 
           {/*--------------------------------------------------------------------------------*/}
           <HeaderUsuario /> {/*el menu solo para version de escritorio*/}
-          <div className={estilo ? 'menu-hamburgesa-activo' : 'menu-hamburgesa-oculto'} onClick={menuResponsive}>
+          <div className={estilo ? styles['menu-hamburgesa-activo'] : styles['menu-hamburgesa-oculto']} onClick={menuResponsive}>
             {<MenuResponsiveUsuario />}     {/*el menu solo para version de movil*/}
           </div>
           {/*--------------------------------------------------------------------------------*/}
 
 
 
-          <div className="item3">
-            <h3 className="titulo-datos-dueño-perfil">TUS DATOS REGISTRADOS</h3>
-            <span className="titulos-div1"><h5>Nombres </h5> {datos.nombres}</span>
-            <span className="titulos-div1"><h5>Apellidos</h5>{datos.apellidos}</span>
-            <span className="titulos-div1"><h5>Ciudad</h5> {datos.ciudad}</span>
-            <span className="titulos-div1"><h5>Direccion</h5>{datos.direccion}</span>
-            <span className="titulos-div1"><h5>Telefono</h5>{datos.telefono}</span>
-            <span className="titulos-div1"><h5>Nombre de la mascota</h5>{datos.nombre_mascota}</span>
-            <span className="titulos-div1"><h5>Genero</h5>{datos.genero}</span>
-            <span className="titulos-div1"><h5>Tipo de Animal</h5> {datos.tipo_animal}</span>
-            <span className="titulos-div1"><h5>Raza</h5> {datos.raza}</span>
-            <span className="titulos-div1"><h5>Edad</h5> {datos.edad}</span>
-            
-          </div>
-
-          <form className="item4">
-            <h3 id="titulo-datos-dueño-perfil">ACTUALIZA LOS DATOS DE TU PERFIL</h3>
-            <div className="div-imagen"><img src={datos.foto_mascota} className="titulos-div2" id="img-mascota" /></div>
-            <div className="div-inputs">
-              <input className="titulos-div2" name="nombres" value={datos.nombres} onChange={handleChange} placeholder="Nombres" />
-              <input className="titulos-div2" name="apellidos" value={datos.apellidos} onChange={handleChange} placeholder="Apellidos" />
-              <input className="titulos-div2" name="ciudad" value={datos.ciudad} onChange={handleChange} placeholder="Ciudad" />
-              <input className="titulos-div2" name="direccion" value={datos.direccion} onChange={handleChange} placeholder="Direccion" />
-              <input type="number" className="titulos-div2" name="telefono" value={datos.telefono} onChange={handleChange} placeholder="Telefono" />
-              <input className="titulos-div2" name="nombre_mascota" value={datos.nombre_mascota} onChange={handleChange} placeholder="Nombre de la mascota" />
-              <input className="titulos-div2" name="genero" value={datos.genero} onChange={handleChange} placeholder="Genero" />
-              <input className="titulos-div2" name="tipo_animal" value={datos.tipo_animal} onChange={handleChange} placeholder="Tipo animal" />
-              <input className="titulos-div2" name="raza" value={datos.raza} onChange={handleChange} placeholder="Raza" />
-              <input type="number" className="titulos-div2" name="edad" value={datos.edad} onChange={handleChange} placeholder="Edad" />
-              <input type="file" accept="image/*" className="titulos-div2" id="input-imagen" onChange={ActualizarImagen} />
+          <div className={styles["item2"]}>
+            <h3 className="titulo-datos-dueño-perfil">Actualiza tus Datos</h3>
+            <div className={styles["div-imagen-perfil"]}>
+              <img src={datos.foto_mascota} className={styles["div-foto-perfil"]} id="img-mascota" alt="not found" />
+            </div>
+            <div className={styles["hijo-item2"]}>
+              <input className={styles["titulos-perfil-input"]} name="nombres" value={datos.nombres} onChange={handleChange} placeholder="Nombres" />
+              <input className={styles["titulos-perfil-input"]} name="apellidos" value={datos.apellidos} onChange={handleChange} placeholder="Apellidos" />
+              <input className={styles["titulos-perfil-input"]} name="ciudad" value={datos.ciudad} onChange={handleChange} placeholder="Ciudad" />
+              <input className={styles["titulos-perfil-input"]} name="direccion" value={datos.direccion} onChange={handleChange} placeholder="Direccion" />
+              <input className={styles["titulos-perfil-input"]} type="number" name="telefono" value={datos.telefono} onChange={handleChange} placeholder="Telefono" />
+              <input className={styles["titulos-perfil-input"]} name="nombre_mascota" value={datos.nombre_mascota} onChange={handleChange} placeholder="Nombre de la mascota" />
+              <input className={styles["titulos-perfil-input"]} name="genero" value={datos.genero} onChange={handleChange} placeholder="Genero" />
+              <input className={styles["titulos-perfil-input"]} name="tipo_animal" value={datos.tipo_animal} onChange={handleChange} placeholder="Tipo animal" />
+              <input className={styles["titulos-perfil-input"]} name="raza" value={datos.raza} onChange={handleChange} placeholder="Raza" />
+              <input className={styles["titulos-perfil-input"]} type="number" name="edad" value={datos.edad} onChange={handleChange} placeholder="Edad" />
+              <input className={styles["titulos-perfil-input"]} type="file" accept="image/*" id="input-imagen" onChange={ActualizarImagen} />
               <button type="button" onClick={Update} className="btn-actualizar">Actualizar</button>
             </div>
-          </form>
-
+          </div>
 
         </div> : <div>
           <span>aun no tienes mascotas registradas </span>
-          <a href="/crear"> registrar mascota</a>
+          <a href="/crearMascota"> registrar mascota</a>
         </div>}
 
     </>

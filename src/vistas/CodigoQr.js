@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { QRCodeCanvas } from 'qrcode.react';
-import '../estilos/CodigoQr.css';
+import styles from "../estilos/CodigoQr.module.css";
 import menu from '../includes/menu.png';
 import HeaderUsuario from './HeaderUsuario.js';
 import MenuResponsiveUsuario from './MenuResponsiveUsuario.js';
@@ -9,7 +9,6 @@ import { AlertaQR, QRGenerado } from '../includes/Alertas.js';
 
 function CodigoQr() {
   const navigate = new useNavigate();
-  const { id } = useParams();
   const [datos, setDatos] = useState([]);
   const [qrGenerado, setQrGenerado] = useState('');
   const [estilo, setEstilo] = useState(false); //para que no se muestre la hamburguesa en version escritorio//
@@ -19,18 +18,27 @@ function CodigoQr() {
   const id_usuario = localStorage.getItem('id_usuario');
 
 
+  useEffect(() => {
+    if (!token) {
+      alert('debes iniciar sesion primero');
+      navigate('/forbiden');
+      return;
+    }
+  }, [navigate]);
+
+
   // para validar el rol del usuario //
   async function getRol() {
-    const res = await fetch('http://localhost:4000/getrol',            //https://meetme-production.up.railway.app/getrol
+    const res = await fetch('https://meetme-back-production.up.railway.app/getrol',            //ttps://meetme-back-production.up.railway.app/getrol
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario },
       });
 
     if (!res.ok) {
-         alert('debes iniciar sesion primero');
-         return navigate('/forbiden');
-         
+      alert('debes iniciar sesion primero');
+      return navigate('/forbiden');
+
     } else {
       const response = await res.json();
       const rol = response.resultados.rol;
@@ -48,13 +56,9 @@ function CodigoQr() {
 
     async function fetchData() {
 
-      if (!token) {
-        navigate('/')
-        return;
-      }
 
       try {
-        const res = await fetch(`http://localhost:4000/buscar`,
+        const res = await fetch(`https://meetme-back-production.up.railway.app/buscar`,  //https://meetme-back-production.up.railway.app/buscar
           {
             method: 'GET',
             headers: { 'Content-Type': 'application/json', 'auth': token, 'id_usuario': id_usuario }
@@ -64,8 +68,8 @@ function CodigoQr() {
           navigate(`/forbiden`)
         }
         const response = await res.json();
-        console.log(response.resultados[0].nombres);
-        setDatos(response.resultados[0]);
+        // console.log(response.resultados[0]);
+        setDatos(response.resultados);
 
       }
       catch (error) {
@@ -84,12 +88,18 @@ function CodigoQr() {
     if (!datos) {
       return AlertaQR();
     }
-    const PID = datos.publicID;
-    const valueCode = `http://localhost:4000/publicIDMimascota/${PID}`;     //https://meetmeio.netlify.app/publicIDMimascota/${PID}
+    const PID = datos[0].publicID;
+    const valueCode = `https://meetme-org.netlify.app/publicIDMimascota/${PID}`;     //https://meetme-org.netlify.app/publicIDMimascota/1650
     setQrGenerado(valueCode);
     QRGenerado();
 
   }
+
+   /* cerrar animacion cuando la respuesta sea exitosa */
+   if (datos.length) {
+      document.getElementById('preloader').style.display = 'none';
+   }
+   /* cerrar animacion cuando la respuesta sea exitosa */
 
   //fucion para mostrar el menu responsive//
   function menuResponsive() {
@@ -99,26 +109,42 @@ function CodigoQr() {
   //-----------------------------------------------//
   return (
     <>
-      <div className="div-padre-qr">
-        <div className='titulo-principal-qr' onClick={menuResponsive} >
-          <h2 className="h2-qr"><img src={menu} className="icono-menu" />MEETME</h2>
-        </div>
-
-
-        <HeaderUsuario />                              {/*el menu solo para version de escritorio*/}
-        <div className={estilo ? 'menu-hamburgesa-activo' : 'menu-hamburgesa-oculto'} onClick={menuResponsive}>
-          <MenuResponsiveUsuario />           {/*el menu solo para version de movil*/}
-        </div>
-
-
-
-        {qrGenerado ? <div className="div-qr">
-          <QRCodeCanvas value={qrGenerado} size={256} className="qr" />
-          <h3 className="titulo-qr">TU CODIGO QR</h3>
-
-        </div> : <button onClick={generarQr} className="btn-generar-qr">Generar QR</button>}
-
+      {/*   <!-- Preloader --> */}
+      <div id="preloader" className={styles['preloader']}>
+        <div className={styles["spinner"]}></div>
+        <h3> Cargando...</h3>
       </div>
+      {/*   <!-- Preloader --> */}
+
+      {datos.length >= 1 ?
+        <div className={styles["div-padre-qr"]}>
+
+          <div className={styles['titulo-principal-qr']} onClick={menuResponsive} >
+            <h2 className={styles["h2-qr"]}>MEETME</h2>
+            <img src={menu} className={styles["icono-menu"]} alt="not found" />
+          </div>
+
+
+          {/*--------------------------------------------------------------------------------*/}
+          <HeaderUsuario /> {/*el menu solo para version de escritorio*/}
+          <div className={estilo ? styles['menu-hamburgesa-activo'] : styles['menu-hamburgesa-oculto']} onClick={menuResponsive}>
+            {<MenuResponsiveUsuario />}     {/*el menu solo para version de movil*/}
+          </div>
+          {/*--------------------------------------------------------------------------------*/}
+
+
+
+          {qrGenerado ? <div className={styles["div-qr"]}>
+            <QRCodeCanvas value={qrGenerado} size={256} className={styles["qr"]} />
+            <h3 className={styles["titulo-qr"]}>TU CODIGO QR</h3>
+
+          </div> : <button onClick={generarQr} className={styles["btn-generar-qr"]}>Generar QR</button>}
+
+        </div> : <div>
+          <span>aun no tienes mascotas registradas </span>
+          <a href="/crearMascota"> registrar mascota</a>
+        </div>}
+
     </>
   );
 }

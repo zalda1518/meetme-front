@@ -17,7 +17,7 @@ function PublicIDMimascota() {
       async function fetchData() {
 
          try {
-            const res = await fetch(`http://localhost:4000/public/${id}`);  //https://meetme-production.up.railway.app/public/${id}
+            const res = await fetch(`https://meetme-back-production.up.railway.app/public/${id}`);  //https://meetme-back-production.up.railway.app/public/${id}
 
             if (!res.ok) {
                 MascotaNoEncontrada();
@@ -31,7 +31,7 @@ function PublicIDMimascota() {
          }
       }
       fetchData();
-   }, [id])
+   }, [navigate,id])
 
    //-------------------------------------------------------------------------------------
    return (
@@ -45,7 +45,7 @@ function PublicIDMimascota() {
                <div className="item2-mi-mascota">
 
                   <div className="div-imagen-mi-mascota">
-                     <img src={datos[0].foto_mascota} className="img-mascota-mi-mascota" />
+                     <img src={datos[0].foto_mascota} className="img-mascota-mi-mascota" alt="not found" />
                      <span className="titulos-dueño-mi-mascota" id="titulos-public-id">{datos[0].nombre_mascota}</span>
                      <span className="titulos-dueño-mi-mascota" id="titulos-public-id"><h5>ID</h5> {datos[0].publicID}</span>
                      <a href="/" className="titulos-dueño-mi-mascota" id="titulos-public-id">Iniciar Sesion</a>
