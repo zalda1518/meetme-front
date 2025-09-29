@@ -89,7 +89,7 @@ function CodigoQr() {
       return AlertaQR();
     }
     const PID = datos[0].publicID;
-    const valueCode = `https://meetmeio-org.netlify.app/publicIDMimascota/${PID}`;     //https://meetme-org.netlify.app/publicIDMimascota/1650
+    const valueCode = `https://meetmeio-org.netlify.app/publicIDMimascota/${PID}`;     //https://meetme-org.netlify.app/publicIDMimascota/1650   https://meetme-back-production.up.railway.app/public/1650
     setQrGenerado(valueCode);
     QRGenerado();
 

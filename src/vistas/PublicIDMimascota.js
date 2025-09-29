@@ -17,7 +17,7 @@ function PublicIDMimascota() {
       async function fetchData() {
 
          try {
-            const res = await fetch(`https://meetme-back-production.up.railway.app/public/${id}`);  //https://meetme-back-production.up.railway.app/public/${id}
+            const res = await fetch(`https://meetme-back-production.up.railway.app/public/${id}`);  //https://meetme-back-production.up.railway.app/public/${id}  https://meetme-back-production.up.railway.app/public/1650
 
             if (!res.ok) {
                 MascotaNoEncontrada();
