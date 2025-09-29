@@ -3,7 +3,7 @@ import { APIProvider, useMapsLibrary} from'@vis.gl/react-google-maps';
 import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import '../estilos/Map.css';
+import './Map.css';
 
 
 const iconLocation = L.icon({

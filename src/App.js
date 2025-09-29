@@ -4,13 +4,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 /* import RegistrosAdmin from './vistas/vistasAdmin/RegistrosAdmin';
 import CrearUsuario from './vistas/vistasAdmin/CrearUsuario';
 import PerfilAdmin from './vistas/vistasAdmin/PerfilAdmin';
-import PublicIDMimascota from './vistas/PublicIDMimascota';
 import CodigoQrAdmin from './vistas/vistasAdmin/CodigoQrAdmin';
 import Usuarios from './vistas/vistasAdmin/Usuarios';
 import Forbiden from './vistas/vistasAdmin/Forbiden'; */
 
 
 //----------------------------------------------------------------
+import PublicIDMimascota from './vistas/PublicIDMimascota';
+
 import Registros from './vistas/Registros';
 import Login from './vistas/Login';
 import RecuperarClave from './vistas/RecuperarClave';
@@ -32,7 +33,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Login />} />
           <Route path='/login' element={<Login />} />
-          {/* <Route path='/publicIDMimascota/:id' element={<PublicIDMimascota  />}/> */}
+          <Route path='/publicIDMimascota/:id' element={<PublicIDMimascota  />}/> 
+          {/* */}
           {/*administrador*/}
           {/* <Route path='/registrosAdmin' element={<RegistrosAdmin  />}/>
         <Route path='/perfilAdmin' element={<PerfilAdmin />}/>
