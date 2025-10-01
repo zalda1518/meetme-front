@@ -8,7 +8,7 @@
    margin: auto;
    scroll-behavior: smooth;
    background:
-      linear-gradient(rgb(253, 255, 255), rgba(30, 30, 30, 0.6)),
+    linear-gradient(rgb(188, 218, 218), rgba(30,30,30,0.6)), /* capa de color */
       /* capa de color */
       url("../includes/fondo.jpg");
    background-attachment: fixed;
@@ -181,12 +181,9 @@
    justify-content: center;
    width: 40%;
    padding: 1%;
-   color: #262424;
+   color: #000000;
    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
    background: rgba(84, 70, 70, 0.2);
-   /* transparencia */
-   backdrop-filter: blur(20px);
-   /* desenfoque */
    border: none;
    border-radius:10px ;
 }
