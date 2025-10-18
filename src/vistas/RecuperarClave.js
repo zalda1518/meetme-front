@@ -1,7 +1,7 @@
 import styles from '../estilos/RecuperarClave.module.css';
 import logometme from '../includes/logo-meetme.png';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {antesDeFetch, CorreoEnviado, CorreoNoRegistrado, CorreoVacio} from '../includes/Alertas.js';
 
 
 
@@ -18,25 +18,31 @@ function RecuperarClave() {
       setUser({ ...user, [name]: value });
    }
 
+   //1. se ejecuta funcion para hacer fetch al backend
    async function recuperar(e) {
       e.preventDefault();
+
+      //2.  se valida campo vacio
       if (!user.correo) {
-         alert('Escribe el correo para recuperar la clave')
+         CorreoVacio();
          return;
       }
+    //3.  se hace fetch 
 
-      const res = await fetch('http://localhost:4000/recuperarclave',
+      antesDeFetch();
+      const res = await fetch('https://meetme-back-production.up.railway.app/recuperarclave ',      // https://meetme-back-production.up.railway.app/recuperarclave //
          {
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user)
          }
       );
-      if(!res.ok){
-         alert('Correo invalido')
+
+      if (!res.ok) {
+         CorreoNoRegistrado();
          return;
       } else {
-         alert('Se ha enviado el enlace de reuperacion al correo, recuerde mirar en SPAM o correo no deseado')
+         CorreoEnviado();
       }
    }
 
@@ -53,7 +59,6 @@ function RecuperarClave() {
          </div>
 
          <div className={styles['login-box-2']}>
-            <h3 className={styles['login-box-titulo-meetme']}>Conoce diferentes mascotas, y ayudalas a encontrar su hogar</h3>
             <div className={styles['login-box-logo']}>
                <img src={logometme} />
             </div>

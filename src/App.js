@@ -17,6 +17,7 @@ import Login from './vistas/Login';
 import RecuperarClave from './vistas/RecuperarClave';
  import Perfil from './vistas/Perfil';
  import CodigoQr from './vistas/CodigoQr';
+import ResetPassword from './vistas/ResetPassword';
 /* 
 import ValidarRol from './controlador/Controlador';
 import CrearMascota from './vistas/CrearMascota'; */
@@ -46,6 +47,7 @@ function App() {
 
           <Route path='/registros' element={<Registros />} />
           <Route path='/recuperarclave' element={<RecuperarClave />} />
+          <Route path='/resetPassword/:token' element={<ResetPassword />} />
            <Route path='/perfil' element={<Perfil />}/>
            <Route path='/codigo' element={<CodigoQr />}/>
          {/*  

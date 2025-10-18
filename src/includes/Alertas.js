@@ -153,6 +153,79 @@ export function Cargada() {
    });
 }
 
+export function CorreoNoRegistrado() {
+   Swal.fire({
+      title: 'Error',
+      text: 'El correo no se encuentra registrado',
+      icon: 'error'
+   });
+}
+
+export function CorreoVacio() {
+   Swal.fire({
+      title: 'Error',
+      text: 'El campo correo esta vacio',
+      icon: 'warning'
+   });
+}
+
+export function antesDeFetch() {
+   Swal.fire({
+      title: 'Espere',
+      text: 'Procesando, por favor espere unos segundos',
+      icon: 'warning',
+      timer:3000,
+      showConfirmButton: false, 
+      timerProgressBar:true
+   });
+}
+
+export function CorreoEnviado() {
+   Swal.fire({
+      title: 'Exitoso',
+      text: 'Se ha enviado el enlace de recuperacion al correo, Recuerde revisar spam y correo no deseado',
+      icon: 'success',
+   });
+}
+
+export function ClaveVacia() {
+   Swal.fire({
+      title: 'Alerta',
+      text: 'Escriba la nueva clave y confirmela',
+      icon: 'warning',
+   });
+}
+
+export function ClaveNoCoincide() {
+   Swal.fire({
+      title: 'Alerta',
+      text: 'Las contraseñas no coinciden',
+      icon: 'warning',
+   });
+}
+
+export function ErrorActualizarClave() {
+   Swal.fire({
+      title: 'Error',
+      text: 'No se pudo actualizar la contraseña',
+      icon: 'error',
+   });
+}
+export function ExitosoActualizarClave() {
+   Swal.fire({
+      title: 'Exitoso',
+      text: 'La contraseña se actualizo correctamente',
+      icon: 'success',timer:2000,
+      showConfirmButton: false, 
+      timerProgressBar:true
+
+   });
+}
+
+
+
+
+
 
 
 
