@@ -55,7 +55,7 @@ function Login() {               //inicia el componente//
    }
    /* mostrar contraseña */
 
-
+/*  */
 
    /* mostrar contraseña */
    //------------------------------------------------------------------------------------------//
@@ -80,7 +80,7 @@ function Login() {               //inicia el componente//
 
 
             <div className={styles["extra-links"]}>
-               <a href="recuperarclave" className={styles['login-box-olvidar-clave']}>¿Olvidaste tu contraseña?</a>
+              {/*  <a href="recuperarclave" className={styles['login-box-olvidar-clave']}>¿Olvidaste tu contraseña?</a>  */}
                {/* <a href="#" className={styles['login-box-crear-cuenta']}>Crear cuenta</a> */}
             </div>
          </div>
